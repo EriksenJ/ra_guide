@@ -17,9 +17,9 @@ All results in projects should be reproducible. There are multiple ways to ensur
 
 Build tools generally help run your project code in the right order based on a set of rules that specify output targets and inputs, including code files. Some examples of more advanced build tools include `snakemake`, and `cmake`. While great, I have generally found that these modern build tools are not available on the secure servers hosted at Statistics Denmark, where a substantial part of my project code resides.  
 
-Instead, I generally use the slightly more archaic `make`. `make` is usually pre-installed on Unix-based systems (like macOS and Linux). For Windows, you can install it through tools like Cygwin, GNUWin32, or `rtools`. 
+Instead, I generally use the slightly more archaic `make`.  Documentation for `make` is available [here](https://www.gnu.org/software/make/manual/make.html). 
 
-An important feature of `make` is that it compiles or runs project code based on a general recipe, the `makefile`. The `makefile` consists of _targets_, _dependencies_, and _commands_.  The `makefile` typically consists of several blocks of code, each defining a target, its dependencies, and the commands to execute. Here's a basic structure: 
+An important feature of `make` is that it compiles or runs project code based on a general recipe, the `makefile`.  The `makefile` consists of _targets_, _dependencies_, and _commands_, which together defines _rules_.   A `makefile` can contain multiple rules. These rules can be linked, for example, if a rule uses the target of another rule as a dependency. 
 
 - _Target_: The output file or goal you want to achieve. E.g., `builddata/out/clean_data.parquet`
 - _Dependencies_: Files or targets that must be up-to-date before executing the target's commands. This will typically include the code file you want to run, and the data it uses. E.g., `builddata/code/clean_data.R`, and `buildraw/out/rawdata.csv`. 
@@ -33,21 +33,26 @@ builddata/out/clean_data.parquet: builddata/code/clean_data.R buildraw/out/rawda
 	rscript builddata/code/clean_data.R
 ```
 
-Running the makefile recipe 
+Make `make` run your command 
 
 1. Navigate a command line tool, such as `cmd` to the project folder where the makefile is located.
-2. In the command line, type `make target`, where target is the file you want to build.  For the example above, you can type `make builddata/out/clean_data.parquet`. 
+2. In the command line, type `make target`, where target is the file you want to build.  E.g., `make builddata/out/clean_data.parquet`. 
 
-Important points about using `make`
+How `make` runs your command: 
+ 
+- When you tell `make` to create a target, `make` first checks the dependencies for that rule. If a dependency is itself a target from another rule, `make`moves back to this previous rule. This continuous until `make` finds the antecedent dependencies. 
+- `make` then checks the timestamps of antecedent dependencies. If the dependencies have not changed since the target was last created, `make` won't re-run the commands for that target. If the target does not exist, the command is always run. 
+- `make` will the move through the linked set of dependencies, running the commands from rules where dependencies have changed since the target was last created. 
+- `make` will let you know before it tries to run if a dependency does not exist and there exists no rule to create it. 
+
+Installation: 
+
+- `make` is usually pre-installed on Unix-based systems (like macOS and Linux). For Windows, you can install it through tools like Cygwin, GNUWin32, or `rtools`. 
+
+Important syntax notes: 
 
 - _Indentation_: Make sure to use a tab, not spaces, for indentation in the Makefile.
 - _Multiple Languages_: If your workflow involves Stata or SAS scripts, you can include them in the Makefile just like R scripts. For instance, `stata -b do my_analysis.do` for a Stata script.
-
-Efficiency: 
-
-- `make` checks the timestamps of dependencies. If a dependency hasn't changed, `make` won't re-run the commands for that target.
-- If your project contains multiple rules related via targets and dependencies, then `make` will find the antecedent output
-- `make` will let you know before running any rules if a dependency does not exist and there exists no rule to create it. 
 
 Line splitting with many dependencies 
 
@@ -59,6 +64,18 @@ builddata/out/clean_data.parquet: \
 	buildraw/out/rawdata.csv
 	rscript builddata/code/clean_data.R
 ```
+
+Many targets
+
+- A file may create multiple outputs, such as regression tables. To specify this, you simple add all targets to the left of `:`
+
+```
+builddata/out/clean_data1.parquet builddata/out/clean_data2.parquet : \
+	builddata/code/clean_data.R \
+	buildraw/out/rawdata.csv
+	rscript builddata/code/clean_data.R
+```
+
 
 Automatic variables 
 
