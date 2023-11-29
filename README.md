@@ -2,6 +2,8 @@
 title: Guide for Research Assistants 
 author: Jesper Eriksen
 date: last-modified
+numbersections: true 
+toc: true 
 ---
 
 # Introduction 
@@ -13,7 +15,7 @@ This page contains my guidelines for how I would like research assistants to wor
 A general guideline is the baseline. If a particular project specifies guidelines, then these supersede the general guidelines. 
 
 
-## Reproducibility 
+# Reproducibility 
 
 All results in projects should be reproducible. There are multiple ways to ensure replicability. In a simple project containing only a couple of R scripts, this could entail having a `master.R` file that runs the code files.  
 
@@ -24,11 +26,29 @@ For code run in the project, this entails having a `makefile` that allow us to r
 
 
 
-## Project folder structure and setup 
+# Project structure and setup 
 
-My projects are typically distributed locally and on a secure server. The secure server project location will exist when the project requires the use of restricted access data (e.g., from Statistics Denmark). The local folder contains notes on project development, literature reviews, and paper drafts. 
+My projects are typically distributed locally and on a secure server.  The local folder contains notes on project development, literature reviews, and paper drafts. The secure server project location will exist when the project requires the use of restricted access data (e.g., from Statistics Denmark). 
 
-The general rule for the local and external project folders are that each component of the project should have its separate folder. All components containing code should have at least a `code`, `temp`, and `out` folder. Raw data is stored in its separate folder, preferably with time information. 
+Each (sub)component of a project should have its separate folder. A project with a literature review, presentation files, and a paper (draft) should contains at least those folders. E.g., 
+
+```
+lit_review/ 
+presentations/
+paper/
+```
+
+All components containing code should have at least a `code`, `temp`, and `out` folder. 
+
+```
+
+lit_review/ 
+presentations/
+paper/
+```
+
+
+Raw data is stored in its separate folder, preferably with time information. 
 
 
 ## Each script has one purpose - its name 
