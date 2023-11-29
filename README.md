@@ -19,6 +19,13 @@ Build tools generally help run your project code in the right order based on a s
 
 Instead, I generally use the slightly more archaic `make`.  Documentation for `make` is available [here](https://www.gnu.org/software/make/manual/make.html). 
 
+Helpful introductions to `make` for data analysis 
+
+- [Automation and Make](https://swcarpentry.github.io/make-novice/) by Software Carpentry. 
+- [Makefiles for R/Latex projects](https://robjhyndman.com/hyndsight/makefiles/) by Rob Hyndman.
+- [Minimal make](https://kbroman.org/minimal_make/) by Karl Broman. Runs a couple of R scripts and creates a latex compiled pdf paper with the resulting figures.  
+- [GNU Make for Reproducible Data Analysis](http://zmjones.com/make/) by Zachary Jones. 
+
 An important feature of `make` is that it compiles or runs project code based on a general recipe, the `makefile`.  The `makefile` consists of _targets_, _dependencies_, and _commands_, which together defines _rules_.   A `makefile` can contain multiple rules. These rules can be linked, for example, if a rule uses the target of another rule as a dependency. 
 
 - _Target_: The output file or goal you want to achieve. E.g., `builddata/out/clean_data.parquet`
