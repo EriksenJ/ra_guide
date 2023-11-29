@@ -15,6 +15,19 @@ The guidelines draw heavily on
 		- Workflow (using github issues) 
 
 
+# Version Control 
+
+- We use the Git version control system to organize our [code](https://github.com/gslab-econ/lab-manual/wiki/Code) 
+- Setup: (based on https://github.com/gslab-econ/lab-manual/wiki/Setup) 
+	- Resources
+	    - Basic (take about 20 minutes total and well worth it): [Git Handbook](https://guides.github.com/introduction/git-handbook/), [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/), [Mastering Issues](https://guides.github.com/features/issues/), [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+	    - Detailed: [Pro Git](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control), [Version Control with Git](https://www.amazon.com/Version-Control-Git-collaborative-development-ebook/dp/B008Y4OR3A/ref=mt_kindle?_encoding=UTF8&me=&qid=1531951134), Chapters 4-9
+	- Setup.
+	    - [Create a Github account and install the Git desktop / command line clients](https://help.github.com/articles/set-up-git/).
+	    - [Install Git LFS](https://git-lfs.github.com/). Note that you only need to do step 1 under "Getting Started" at this point.
+	    - Give your Github ID to a lab member who can give you permissions to the appropriate repositories.
+
+
 # Directories  
 
 - Our projects are typically distributed locally and on a secure server.  The local project  might contain notes, literature reviews, code that doesn't need to run on a secure server, and paper drafts. The secure server project location will exist when the project requires the use of restricted access data (e.g., from Statistics Denmark). 
@@ -71,6 +84,8 @@ paper/
 - Script outputs must contain the name of the producing script and be informative about content. 
 	- _Example_: Assume the file `descriptives_main_sample.R` outputs two summary tables in LaTeX format. One is balance table with means and differences in means between treatment and control groups, and one contains general summary statistics for the full sample. These (sh)could be named `descriptives_main_sample_balance.tex` and `descriptives_main_sample_summary.tex`.
 - When possible, use R to solve coding tasks. 
+- No line of code should be more than 100 characters long. All languages we work in allow you to break a logical line across multiple lines on the page (e.g, using `///` in Stata or `...` in Matlab). You may want to set your editor to show a “margin” at 100 characters.
+- Functions should not typically be longer than 200 lines.
 
 
 ## R 
@@ -103,11 +118,14 @@ dat |> export("builddata/out/clean_bef.parquet")
 ```
 
 
-# Ensuring Reproducibility 
+# Automation
 
-- All results in projects should be reproducible. In a simple project with a couple of R scripts this could be ensured by having a `master.R` script that runs all the scripts. But this often becomes too cumbersome in projects involving more than a few scripts and/or large datasets that need to be processed. 
+- We automate everything that can be automated. This implies writing scripts to do all data cleaning and analysis.  
+- We use `make` to run all project code. 
+	- Generally, we want to be able to delete all files in output folders, type `make all` on the command line, and have all output files reappear just as they were before. 
 
-## Build tool - MAKE 
+
+## Build tool - `make` 
 
 - Build tools generally help run your project code in the right order based on a set of rules that specify output targets and inputs, including code files. Some examples of more advanced build tools include `snakemake`, and `cmake`. While great, I have generally found that these modern build tools are not available on the secure servers hosted at Statistics Denmark, where a substantial part of my project code resides.  
 - We generally use the slightly more archaic `make`. 
@@ -217,7 +235,10 @@ all: $(targets)
 
 
 
-# Tasks 
+# Workflow 
+
+
+## Tasks 
 
 - We generally follow the workflow [approach](https://github.com/gslab-econ/lab-manual/wiki/Workflow) from Gentzkow and Shapiro. 
 - Tasks will be specified on github under the relevant project as `issues`. We do this to keep track of open tasks and output from tasks. You can familiarize yourself with github issues [here](https://github.com/features/issues). 
@@ -237,9 +258,7 @@ all: $(targets)
 	- The task supervisor agrees that the task has been completed. 
 
 
-# Reporting and notes 
-
-## Format 
+## Reporting and notes 
 
 - When you report on a task or write notes or documentation, the preferred output format is markdown files ending in `.md`. These can easily be compiled into pdfs, word documents, or other relevant format using `pandoc` or `quarto`.  
 - Markdown files can be edited using most text editors. We suggest VS Code and Obsidian. 
