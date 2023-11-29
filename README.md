@@ -1,17 +1,79 @@
 
 # Introduction 
 
-RAs should have a clear set of rules to guide their work so they can focus on _getting_ work done rather than coordinating with their project manager on _how_ to get work done. 
+RAs should have clear guidance for their work so they can focus on _getting_ work done rather than on _how_ to get work done. 
 
-This page contains my guidelines for how I would like research assistants to work on my projects. The guidelines have been honed from a lot of different 
+This page describes the general guidelines that I employ for my projects. The guidelines will be updated over time. 
 
-A general guideline is the baseline. If a particular project specifies guidelines, then these supersede the general guidelines. 
+The guidelines draw heavily on 
+
+- _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) 
+- 
 
 
-# Reproducibility 
 
-All results in projects should be reproducible. There are multiple ways to ensure replicability. In a simple project containing only a couple of R scripts, this could entail having a `master.R` file that runs the code files.  
+# Directories  
 
+Our projects are typically distributed locally and on a secure server.  The local folder contains notes on project development, literature reviews, and paper drafts. The secure server project location will exist when the project requires the use of restricted access data (e.g., from Statistics Denmark). 
+
+We generally apply the rules from Gentzkow and Shapiro (2014), chapter 4: 
+
+1. Separate directories (folders) by function. 
+2. Separate files into inputs and outputs (and temporary files) 
+3. Make directories (folders) portable.
+
+Each (sub)component of a project should have its separate folder. A project with a literature review, presentation files, and a paper (draft) should contains at least those folders.  
+
+```
+lit_review/ 
+presentations/
+paper/
+```
+
+All components containing code should have at least a `code`, `temp`, and `out` folder. For example, assume that the simple project contains a simulation exercise written in R showing the consistency of an econometric estimator. The code file outputs the graph `simulate_estimator_consistency_distribution.pdf`. The folders could look like 
+
+```
+consistency_simulation/
+	code/ 
+		simulate_estimator_consistency.R 
+	temp/
+	out/
+		simulate_estimator_consistency_distribution.pdf
+lit_review/ 
+presentations/
+paper/
+```
+
+Raw data is stored in a separate folder. If more than one set of raw files exist, they should be separated into subfolders with meaningful names and possibly date of compilation (this is particularly relevant with compiled raw data from Statistics Denmark). 
+
+```
+buildraw/ 
+	dst/
+		dat1.sas7bdat
+		dat2.sas7bdat
+consistency_simulation/
+	code/ 
+		simulate_estimator_consistency.R 
+	temp/
+	out/
+		simulate_estimator_consistency_distribution.pdf
+lit_review/ 
+presentations/
+paper/
+```
+
+
+
+## Each script has one purpose - its name 
+
+Rule: The name of a script should explain what the script does. 
+
+For example, I have written some code that cleans the raw `BEF` register data for use in subsequent analyses. The file that does this should be named `clean_bef.R`. 
+
+
+# Ensuring Reproducibility 
+
+All results in projects should be reproducible. There are multiple ways to ensure replicability. In a simple project with a couple of R scripts this could be ensured by having a `master.R` script that runs all the scripts. But this often becomes too cumbersome in projects involving more than a few scripts and/or large datasets that need to be processed. 
 
 ## Build tool - MAKE 
 
@@ -141,56 +203,32 @@ all: $(targets)
 ```
 
 
-## Version management 
-
-# Project structure and setup 
-
-My projects are typically distributed locally and on a secure server.  The local folder contains notes on project development, literature reviews, and paper drafts. The secure server project location will exist when the project requires the use of restricted access data (e.g., from Statistics Denmark). 
-
-Each (sub)component of a project should have its separate folder. A project with a literature review, presentation files, and a paper (draft) should contains at least those folders.  
-
-```
-lit_review/ 
-presentations/
-paper/
-```
-
-All components containing code should have at least a `code`, `temp`, and `out` folder. For example, assume that the simple project contains a simulation exercise written in R showing the consistency of an econometric estimator. The code file outputs the graph `simulate_estimator_consistency_distribution.pdf`. The folders could look like 
-
-```
-consistency_simulation/
-	code/ 
-		simulate_estimator_consistency.R 
-	temp/
-	out/
-		simulate_estimator_consistency_distribution.pdf
-lit_review/ 
-presentations/
-paper/
-```
-
-Raw data is stored in its separate folder, preferably with an indicator for when the raw data was added to the storage location.  
-
-
-## Each script has one purpose - its name 
-
-Rule: The name of a script should explain what the script does. 
-
-For example, I have written some code that cleans the raw `BEF` register data for use in subsequent analyses. The file that does this should be named `clean_bef.R`. 
-
-
-
-
 
 # Tasks 
 
-Projects often start from a simple model. 
+Tasks will be specified on github under the relevant project as `issues`. We do this to keep track of open tasks and output from tasks. You can familiarize yourself with github issues [here](https://github.com/features/issues). 
 
-## Task management 
+Each task will contain 
 
-## Reporting on tasks 
+- A description. 
+- A main set of outcomes to be fulfilled when the task is completed. 
+- A  task supervisor 
 
+When working on a task 
 
+- Keep documentation of your work. I suggest having a `running_notes.md` document where you store your notes with forth running dates (top of the document is the latest entry). 
+
+Asking clarifying questions 
+
+- It will often be necessary to ask additional clarifying questions when working on a task. 
+- If you ask in person, add a note about the questions and answers to the github issue page so that we can keep track of what we discuss. 
+- You can also ask for clarifications under the github issue. 
+
+A task is closed by the task supervisor when 
+
+- The relevant outcomes have been created/reached. 
+- The task assignee has written up a reply to the github issue of how the task was completed, and where outcome files are located (e.g., the code that cleans a relevant bit of data). 
+- The task supervisor agrees that the task has been completed. 
 
 
 # Coding 
@@ -206,7 +244,7 @@ RA Guide on [github](https://raguide.github.io/appendix/learning) has compiled a
 A general introduction to working with `git` is available at 
 
 
-# Suggestions 
+# Software suggestions 
 
 Linh T. Tô has a great set of (free) resources on her website ([link](https://linh.to/resources/). 
 
