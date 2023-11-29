@@ -87,7 +87,7 @@ Example
 
 ## R 
 
-We generally try to use R for data cleaning and statistical analyses. One reason is that 
+We generally use R for data cleaning and analysis. 
 
 
 # Data storage 
