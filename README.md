@@ -19,59 +19,105 @@ Build tools generally help run your project code in the right order based on a s
 
 Instead, I generally use the slightly more archaic `make`. `make` is usually pre-installed on Unix-based systems (like macOS and Linux). For Windows, you can install it through tools like Cygwin, GNUWin32, or `rtools`. 
 
-### How Does `make` Work?
+An important feature of `make` is that it compiles or runs project code based on a general recipe, the `makefile`. The `makefile` consists of _targets_, _dependencies_, and _commands_.  The `makefile` typically consists of several blocks of code, each defining a target, its dependencies, and the commands to execute. Here's a basic structure: 
 
-- **Makefile**: The core of `make` is the `Makefile`, a text file that specifies how to compile and link a program (in software development) or, in your case, how to run and process statistical analyses.
-- **Targets and Dependencies**: In a Makefile, you define "targets" and their dependencies. A target is usually a file that is created by running specific commands. Dependencies are files or other targets that need to be up-to-date before the current target can be processed.
-- **Commands**: For each target, you also define the commands that need to be executed to produce that target from its dependencies.
+- _Target_: The output file or goal you want to achieve. E.g., `builddata/out/clean_data.parquet`
+- _Dependencies_: Files or targets that must be up-to-date before executing the target's commands. This will typically include the code file you want to run, and the data it uses. E.g., `builddata/code/clean_data.R`, and `buildraw/out/rawdata.csv`. 
+- _Command_: The command(s) that `make` will execute to create or update the target. `make` basically runs from the command line meaning that you must either use a command that is available from the CLI or specify the full path to the program. If, for example,  you want to run an r script, you can use the CLI command `rscript` when this is installed. 
+
+```
+#target: dependencies
+#	command
+
+builddata/out/clean_data.parquet: builddata/code/clean_data.R buildraw/out/rawdata.csv
+	rscript builddata/code/clean_data.R
+```
+
+Running the makefile recipe 
+
+1. Navigate a command line tool, such as `cmd` to the project folder where the makefile is located.
+2. In the command line, type `make target`, where target is the file you want to build.  For the example above, you can type `make builddata/out/clean_data.parquet`. 
+
+Important points about using `make`
+
+- _Indentation_: Make sure to use a tab, not spaces, for indentation in the Makefile.
+- _Multiple Languages_: If your workflow involves Stata or SAS scripts, you can include them in the Makefile just like R scripts. For instance, `stata -b do my_analysis.do` for a Stata script.
+
+Efficiency: 
+
+- `make` checks the timestamps of dependencies. If a dependency hasn't changed, `make` won't re-run the commands for that target.
+- If your project contains multiple rules related via targets and dependencies, then `make` will find the antecedent output
+- `make` will let you know before running any rules if a dependency does not exist and there exists no rule to create it. 
+
+Line splitting with many dependencies 
+
+- If you file contains many dependencies it can be useful to split the dependency list over multiple lines. You can do this by writing ` \` and continuing the content on the next line after an indentation. If you include anything, include a space, after the backslash, `make` will throw an error. 
+
+```
+builddata/out/clean_data.parquet: \
+	builddata/code/clean_data.R \
+	buildraw/out/rawdata.csv
+	rscript builddata/code/clean_data.R
+```
+
+Automatic variables 
+
+- `make` allows you to use [automatic variables](https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html) in rules.
+	- `$@`: The name of the target 
+	- `$<`: The name of the first prerequisite
+	- `$^`: The names of all the prerequisites, with spaces between them
+
+```
+builddata/out/clean_data.parquet: \
+	builddata/code/clean_data.R \
+	buildraw/out/rawdata.csv
+	rscript $<
+```
+
+Creating variables 
+
+- Creating variables can be useful, for example, for creating build rules or listing all targets you want to build. 
+- Variables can be assigned with `:=`. E.g., `var := name1`
+- Variables can be called using `$(variablename)`
+- You can append to a variable by adding `$(variablename)` on the right hand side of the assignment name; `var := $(var) name2`. 
 
 
-### Detailed Makefile Structure
+```
+R := C:\Users\bxn825\scoop\shims\rscript.exe
 
-A Makefile typically consists of several blocks of code, each defining a target, its dependencies, and the commands to execute. Here's a basic structure:
+builddata/out/clean_data.parquet: \
+	builddata/code/clean_data.R \
+	buildraw/out/rawdata.csv
+	$(R) $<
+```
 
-makefile
+Creating build rules with many targets (phony targets)  
 
-`target: dependencies     command`
+- The rule `all: $(targets)` is often used to run all rules you want in a project, when the variable `$(targets)` contains a set of targets in your project. 
+- You can use `.PHONY` to explicitly declare `all` (and other non-file targets) as a phony target. This tells `make` that this target isn't a file but rather a label for a recipe to be executed. 
 
-- **Target**: The output file or goal you want to achieve.
-- **Dependencies**: Files or targets that must be up-to-date before executing the target's commands.
-- **Command**: The command(s) that `make` will execute to create or update the target.
+```
+R := C:\Users\bxn825\scoop\shims\rscript.exe
 
-#### Example Makefile for a Research Project
+$(targets) := builddata/out/clean_data.parquet
+builddata/out/clean_data.parquet: \
+	builddata/code/clean_data.R \
+	buildraw/out/rawdata.csv
+	$(R) $<
 
-Suppose you have a project with the following workflow:
+$(targets) := $(targets) builddata/out/clean_data.parquet 
+builddata/out/clean_data.parquet: \
+	builddata/code/clean_data.R \
+	buildraw/out/rawdata.csv
+	$(R) $<
 
-1. **Data Cleaning** (`clean_data.R`): Cleans raw data (`data.csv`) and produces a cleaned data file (`cleaned_data.csv`).
-2. **Analysis** (`analysis.R`): Performs analysis on the cleaned data and produces an analysis output (`analysis_output.csv`).
-3. **Report Generation** (`report.Rmd`): Generates a report (`report.html`) from the analysis output using R Markdown.
+.PHONY: all 
 
-Your Makefile might look like this:
-
-makefile
-
-`# Final Report report.html: analysis_output.csv report.Rmd     Rscript -e "rmarkdown::render('report.Rmd')"  # Analysis Output analysis_output.csv: cleaned_data.csv analysis.R     Rscript analysis.R  # Cleaned Data cleaned_data.csv: data.csv clean_data.R     Rscript clean_data.R`
-
-#### Breakdown of the Example
-
-- **Cleaned Data**: The `cleaned_data.csv` target depends on `data.csv` and `clean_data.R`. If either of these files changes, running `make cleaned_data.csv` will re-run the `clean_data.R` script.
-- **Analysis Output**: Similarly, `analysis_output.csv` depends on the `cleaned_data.csv` and `analysis.R`. Changes in these will trigger the re-running of `analysis.R`.
-- **Final Report**: Finally, the `report.html` file depends on the `analysis_output.csv` and `report.Rmd`. Updating either of these will lead to the re-generation of the report.
-
-#### Additional Notes
-
-- **Indentation**: Make sure to use a tab, not spaces, for indentation in the Makefile.
-- **Efficiency**: `make` checks the timestamps of dependencies. If a dependency hasn't changed, `make` won't re-run the commands for that target.
-- **Multiple Languages**: If your workflow involves Stata or SAS scripts, you can include them in the Makefile just like R scripts. For instance, `stata -b do my_analysis.do` for a Stata script.
-
-#### Advanced Makefile Features
-
-As you become more comfortable with `make`, you can explore advanced features like pattern rules, variables, and functions to make your Makefile more efficient and easier to maintain.
+all: $(targets)
+```
 
 
 ## Version management 
-
-
 
 # Project structure and setup 
 
