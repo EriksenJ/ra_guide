@@ -5,7 +5,8 @@ This page describes the general RA guidelines we employ for our projects. The pu
 
 - _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) 
 	- The document contains a general introduction to reproducibility challenges that many social science researchers have faced and how the two authors have tried to solve them in their lab. Emphasizes coding conventions, directories, and version control.  
-- _Lab Manual_. Gentzkow and Shapiro. Updated over time. [Link]This supplements their (2014) document aimed at their RAs. It includes information on workflows, coding, data handling, and paper and slide production internally in their lab. We mainly follow their approaches to workflow (using GitHub issues to assign and resolve tasks).  
+- _Lab Manual_. Gentzkow and Shapiro. Updated over time. [Link]
+  - This supplements their (2014) document aimed at their RAs. It includes information on workflows, coding, data handling, and paper and slide production internally in their lab. We mainly follow their approaches to workflow (using GitHub issues to assign and resolve tasks).  
 
 How to get started 
 
