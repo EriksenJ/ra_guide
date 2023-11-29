@@ -8,13 +8,11 @@ This page describes the general guidelines that I employ for my projects. The gu
 The guidelines draw heavily on 
 
 - _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) 
-- 
-
 
 
 # Directories  
 
-Our projects are typically distributed locally and on a secure server.  The local folder contains notes on project development, literature reviews, and paper drafts. The secure server project location will exist when the project requires the use of restricted access data (e.g., from Statistics Denmark). 
+Our projects are typically distributed locally and on a secure server.  The local project  might contain notes, literature reviews, code that doesn't need to run on a secure server, and paper drafts. The secure server project location will exist when the project requires the use of restricted access data (e.g., from Statistics Denmark). 
 
 We generally apply the rules from Gentzkow and Shapiro (2014), chapter 4: 
 
@@ -64,11 +62,51 @@ paper/
 
 
 
-## Each script has one purpose - its name 
+# Coding 
 
-Rule: The name of a script should explain what the script does. 
+## Naming scripts 
 
-For example, I have written some code that cleans the raw `BEF` register data for use in subsequent analyses. The file that does this should be named `clean_bef.R`. 
+Rules 
+
+- Scripts are named according to what they  do. 
+
+Example
+
+- Assume I have written some code that cleans the raw `BEF` register data for use in subsequent analyses. The file (sh)could be named `clean_bef.R`. 
+
+## Script outputs 
+
+Rules 
+
+- Script outputs must contain the name of the producing script and be informative about content. 
+
+Example 
+
+- Assume the file `descriptives_main_sample.R` outputs two summary tables in LaTeX format. One is balance table with means and differences in means between treatment and control groups, and one contains general summary statistics for the full sample. These (sh)could be named `descriptives_main_sample_balance.tex` and `descriptives_main_sample_summary.tex`.
+
+
+## R 
+
+We generally try to use R for data cleaning and statistical analyses. One reason is that 
+
+
+# Data storage 
+
+Rules 
+
+- When possible, store data in `.parquet` format. 
+
+We often work with large administrative data files that can take up many Gb of space. To reduce our server footprint and increase IO speed we generally prefer using the `parquet` format. This is a so-called columnar format, meaning that it is possible to load  These are generally highly compressed 
+
+We can import and export `.parquet` files using `R` and `python`. Hadley Wiggins, the developer behind the large parts of the `tidyverse` packages, has written an online book [chapter](https://r4ds.hadley.nz/arrow) on using `parquet` files with R. 
+
+In R, we will often use the following syntaxes to import or export a full dataset: 
+
+```
+library(rio) 
+dat = import("builddata/out/clean_bef.parquet")
+dat |> export("builddata/out/clean_bef.parquet")
+```
 
 
 # Ensuring Reproducibility 
@@ -231,6 +269,15 @@ A task is closed by the task supervisor when
 - The task supervisor agrees that the task has been completed. 
 
 
+# Reporting and notes 
+
+## Format 
+
+When you report on a task or write notes or documentation, the preferred output format is markdown files ending in `.md`. These can easily be compiled into pdfs, word documents, or other relevant format using `pandoc` or `quarto`.  
+
+Markdown files can be edited using most text editors. I prefer using VS Code and Obsidian. 
+
+
 # Coding 
 
 We will write most of our project code in a combination of R, Stata, and SAS (the latter for registry data). 
@@ -251,11 +298,21 @@ Linh T. Tô has a great set of (free) resources on her website ([link](https://l
 
 ## VS Code 
 
-VS Code is a general text editor great for all things from developing python, R, or markdown document. You can add functionality by installing plugins. 
+VS Code is a general text editor great for all things from developing python, R, or markdown document. 
 
-Some favorite plugins 
+VSCode also has great version control features included 
 
-- 
+You can add functionality by installing extensions. Some favorite extensions 
+
+- Git History
+- Github Copilot (free for academic users) 
+- Grammarly (for the non-native English writers) 
+- LaTeX workshop
+- Markdown All in One 
+- Python
+- Quarto 
+- R (consider using this together with `radian`)
+- Stata Emjeamced 
 
 Installation with `scoop` on windows 
 
@@ -268,7 +325,16 @@ scoop install vscode
 
 Obsidian is an elegant (markdown-based) digital note editor with latex compilation to pdf ready out of the box.  
 
-## Installing software on Windows 
+Some suggested plugins 
+
+- LaTeX Suite 
+- Linter 
+- Obsidian Git 
+- Templater 
+- Zotero Integration
+
+
+## Scoop - Installing software on Windows 
 
 Working on University provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. 
 
