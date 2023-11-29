@@ -1,11 +1,7 @@
 
 # Introduction 
 
-RAs should have clear guidance for their work so they can focus on _getting_ work done rather than on _how_ to get work done. 
-
-This page describes the general guidelines that I employ for my projects. The guidelines will be updated over time. 
-
-The guidelines draw heavily on 
+This page describes the general RA guidelines we employ for our projects. The purpose of the guidelines are to make it easier to focus on _getting_ work done rather than on _how_ to do it. The guidelines draw heavily on 
 
 - _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) 
 	- A general introduction to reproducibility  challenges that many social science researchers have faced, and how the two authors have tried to solve them in their lab. Emphasizes coding conventions, directories, and version control.  
@@ -13,6 +9,41 @@ The guidelines draw heavily on
 	- An updated version of their (2014) document aimed at their RAs. Includes information on workflows, coding, data handling, and paper and slide production internally in their lab. 
 	- We particularly follow their approaches with respect to 
 		- Workflow (using github issues) 
+
+How to get started 
+
+- Read this document.  
+- Setup git and a github account as described under `version control` 
+- Install necessary software to work with markdown documents. This can be either vscode or 
+
+
+# Workflow 
+
+
+## Tasks 
+
+- We generally follow the workflow [approach](https://github.com/gslab-econ/lab-manual/wiki/Workflow) from Gentzkow and Shapiro. 
+- Tasks will be specified on github under the relevant project as `issues`. We do this to keep track of open tasks and output from tasks. You can familiarize yourself with github issues [here](https://github.com/features/issues). 
+- Each task will contain 
+	- A description. 
+	- A main set of outcomes to be fulfilled when the task is completed. 
+	- A  task supervisor 
+- When working on a task 
+	- Keep documentation of your work. We suggest having a `running_notes.md` document where you store your notes with forth running dates (top of the document is the latest entry). 
+- Asking clarifying questions 
+	- It will often be necessary to ask additional clarifying questions when working on a task. 
+	- If you ask in person, add a note about the questions and answers to the github issue page so that we can keep track of what we discuss. 
+	- You can also ask for clarifications under the github issue. 
+- A task is closed by the task supervisor when 
+	- The relevant outcomes have been created/reached. 
+	- The task assignee has written up a reply to the github issue of how the task was completed, and where outcome files are located (e.g., the code that cleans a relevant bit of data). 
+	- The task supervisor agrees that the task has been completed. 
+
+
+## Reporting and notes 
+
+- When you report on a task or write notes or documentation, the preferred output format is markdown files ending in `.md`. These can easily be compiled into pdfs, word documents, or other relevant format using `pandoc` or `quarto`.  
+- Markdown files can be edited using most text editors. We suggest VS Code and Obsidian. 
 
 
 # Version Control 
@@ -79,7 +110,7 @@ paper/
 
 # Code 
 
-- Scripts are named according to what they  do. 
+- Scripts are named according to what they do. 
 	- _Example_: Assume we have written some code that cleans the raw `BEF` register data for use in subsequent analyses. The file (sh)could be named `clean_bef.R`. 
 - Script outputs must contain the name of the producing script and be informative about content. 
 	- _Example_: Assume the file `descriptives_main_sample.R` outputs two summary tables in LaTeX format. One is balance table with means and differences in means between treatment and control groups, and one contains general summary statistics for the full sample. These (sh)could be named `descriptives_main_sample_balance.tex` and `descriptives_main_sample_summary.tex`.
@@ -97,11 +128,14 @@ paper/
 - Use the `rio` [package](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) for data import/export. 
 	- It supports a large number of filetypes and generally uses the most efficient IO tool for importing/exporting the file format.
 - Use the `data.table` [package](https://stata2r.github.io/data_table/) for data wrangling. 
-- [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) from the authors of the package. 
+	- [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) from the authors of the package. 
 	- Introduction for Stata users:  https://stata2r.github.io/data_table/
 	- [data.table chapter](https://bookdown.org/ronsarafian/IntrotoDS/datatable.html) in Introduction to Data Science. 
-- Use For estimating most types of statistical models, and particularly linear and IV models with fixed effects, we use the `fixest` [package](https://lrberge.github.io/fixest/) by Laurent Berge. It provides estimation tools typically much faster than other options in R and Stata. 
-- For saving regression tables, we use the `modelsummary()` 
+- Use  the `fixest` [package](https://lrberge.github.io/fixest/) by Laurent Berge for estimating most types of statistical models, and particularly linear and IV models with fixed effects
+	- It provides estimation tools typically much faster than other options in R and Stata. 
+	- Documentation is available [here](https://lrberge.github.io/fixest/). 
+- We typically use the `modelsummary` [package](https://modelsummary.com) for summarizing regression results and creating summary statistics tables outputted to latex or markdown format. 
+	- An introduction is available [here](https://modelsummary.com). 
 
 
 # Data storage 
@@ -233,35 +267,6 @@ builddata/out/clean_data.parquet: \
 all: $(targets)
 ```
 
-
-
-# Workflow 
-
-
-## Tasks 
-
-- We generally follow the workflow [approach](https://github.com/gslab-econ/lab-manual/wiki/Workflow) from Gentzkow and Shapiro. 
-- Tasks will be specified on github under the relevant project as `issues`. We do this to keep track of open tasks and output from tasks. You can familiarize yourself with github issues [here](https://github.com/features/issues). 
-- Each task will contain 
-	- A description. 
-	- A main set of outcomes to be fulfilled when the task is completed. 
-	- A  task supervisor 
-- When working on a task 
-	- Keep documentation of your work. We suggest having a `running_notes.md` document where you store your notes with forth running dates (top of the document is the latest entry). 
-- Asking clarifying questions 
-	- It will often be necessary to ask additional clarifying questions when working on a task. 
-	- If you ask in person, add a note about the questions and answers to the github issue page so that we can keep track of what we discuss. 
-	- You can also ask for clarifications under the github issue. 
-- A task is closed by the task supervisor when 
-	- The relevant outcomes have been created/reached. 
-	- The task assignee has written up a reply to the github issue of how the task was completed, and where outcome files are located (e.g., the code that cleans a relevant bit of data). 
-	- The task supervisor agrees that the task has been completed. 
-
-
-## Reporting and notes 
-
-- When you report on a task or write notes or documentation, the preferred output format is markdown files ending in `.md`. These can easily be compiled into pdfs, word documents, or other relevant format using `pandoc` or `quarto`.  
-- Markdown files can be edited using most text editors. We suggest VS Code and Obsidian. 
 
 
 # Software suggestions 
