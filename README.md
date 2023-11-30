@@ -353,7 +353,8 @@ all: $(targets)
 		-  [Guide](https://quarto.org/docs/get-started/) from the developers. 
 		- Installation via Scoop on Windows machines: `scoop install quarto`
 - Zotero
-	- [Zotero](https://www.zotero.org/) is an open-source reference manager. Using it with the extension `betterbiblatex` allows us to export `.bib` files with all references. These can then be referenced in markdown documents compiled with `pandoc` or `quarto`, or in LaTeX documents.  
+	- [Zotero](https://www.zotero.org/) is an open-source reference manager. 
+	- Allows easy export of bibtex reference libraries that can cited in markdown and latex documents.   
 	- Installation 
 		- [Guide](https://www.zotero.org/download/) from the developers. 
 		- Installation via Scoop on Windows machines: `scoop install zotero`
