@@ -42,7 +42,7 @@ How to get started
 ## Reporting and notes 
 
 - We write notes and documents in markdown format with files ending in `.md` unless another format is required. 
-	- Markdown documents can easily be compiled into Word, PDF (via LaTeX), HTML, beamer PDF slides, or other formats PDFs, word documents, or other formats using `pandoc` or `quarto`.
+	- Markdown documents can easily be compiled into Word, PDF (via LaTeX), HTML, beamer PDF slides, or other formats using `pandoc` or `quarto`.
 	- Markdown files can be edited using most text editors. We suggest VS Code and Obsidian. 
 	- [Introduction to basic markdown syntax](https://www.markdownguide.org/basic-syntax/) written by the developers behind the original markdown language (it comes in many flavors).
 - We keep personal running notes. These generally contain drafts of information and notes on how we tackle tasks. The documents should typically be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
@@ -51,6 +51,8 @@ How to get started
 ## References 
 
 - We use Zotero to maintain shared libraries with project references.  
+  - 
+  - A supervisor will add you to the relevant project(s) on Zotero.
 - We use the `betterbiblatex` extension for Zotero to export `.bib` files to projects or to Overleaf. 
 
 
@@ -142,7 +144,7 @@ paper/
 ```
 
 
-## Data storage 
+## Data formats  
 
 - When possible, store data in `.parquet` format. 
 - We often work with large administrative data files that can take up many GB of space. We prefer the parquet format to reduce our server footprint and increase IO speed. This is a so-called columnar format, meaning that it is possible to load  These are generally highly compressed 
@@ -156,7 +158,7 @@ dat |> export("builddata/out/clean_bef.parquet")
 ```
 
 
-# Code 
+# Code Conventions  
 
 
 ## General 
@@ -174,14 +176,16 @@ dat |> export("builddata/out/clean_bef.parquet")
 - We follow [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml) 
 - Exceptions to style guide: 
 	- Do not use dots; separate using underscores, and keep lowercase. Example: `.CalcMeans()` should be `calc_mean()`.  
-- Use the `rio` [package](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) for data import/export. It supports many file types and generally uses the most efficient IO tool for importing/exporting the file format.
+- Use the `rio` [package](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) for data import/export. 
+    - It supports many file types and generally uses the most efficient IO tool for importing/exporting the file format.
 - Use the `data.table` [package](https://stata2r.github.io/data_table/) for data wrangling. 
 	- [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) from the authors of the package. 
-	- Introduction for Stata users:  https://stata2r.github.io/data_table/
+	- [Introduction for Stata users](https://stata2r.github.io/data_table/)
 	- [data.table chapter](https://bookdown.org/ronsarafian/IntrotoDS/datatable.html) in Introduction to Data Science. 
 - Use  the `fixest` [package](https://lrberge.github.io/fixest/) by Laurent Berge for estimating most types of statistical models, particularly linear and IV models with fixed effects
-	- It provides estimation tools typically much faster than other options in R and Stata. 
-	- Documentation is available [here](https://lrberge.github.io/fixest/). 
+	- It provides estimation tools typically much faster than other options in R and Stata.
+	- Linear, fixed effects, and 2SLS models can be estimated via `feols()`.  
+	- [Documentation](https://lrberge.github.io/fixest/). 
 - We typically use the `modelsummary` [package](https://modelsummary.com) for summarizing regression results and creating summary statistics tables outputted to latex or markdown format. 
 	- An introduction is available [here](https://modelsummary.com). 
 
@@ -353,6 +357,8 @@ all: $(targets)
 	- Installation 
 		- [Guide](https://www.zotero.org/download/) from the developers. 
 		- Installation via Scoop on Windows machines: `scoop install zotero`
+    - Install relevant extensions 
+       - [better bibtex](https://retorque.re/zotero-better-bibtex/)
 
 
 ## Suggestions 
