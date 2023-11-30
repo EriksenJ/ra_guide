@@ -352,5 +352,5 @@ all: $(targets)
 		- Templater 
 		- Zotero Integration
 	- Install with `scoop` on windows: `scoop bucket add extras; scoop install obsidian`
-- Linh T. Tô has a great set of (free) resources on her website ([link](https://linh.to/resources/). Below are suggestions for software that we use in our workflow.
+- Linh T. Tô has a great set of (free) resources on her website ([link](https://linh.to/resources/). 
 
