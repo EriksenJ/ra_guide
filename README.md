@@ -264,6 +264,15 @@ all: $(targets)
 
 Linh T. Tô has a great set of (free) resources on her website ([link](https://linh.to/resources/). 
 
+Below follows suggestions for software that we use in our workflow.
+
+
+- Scoop 
+	- A Powershell tool for Windows that helps you install and keep software updated. Working on university-provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. 
+	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) the latest versions of programs. 
+	- Installing a program with `scoop` is as simple as `scoop install program`. 
+	- Updating a program with `scoop` is as simple as `scoop update program`. Type `scopp update *` to update all installed programs.
+	- Scoop searches for install recipes in buckets. Buckets can be added by typing `scoop bucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. You can find an example of installing and using a `scoop` to set up a new Windows machine at `https://github.com/EriksenJ/_setup`. 
 - VS Code 
 	- A general text editor great for all things from developing python, R, or markdown document. 
 	- Has great version control features included 
@@ -287,10 +296,3 @@ Linh T. Tô has a great set of (free) resources on her website ([link](https://l
 		- Templater 
 		- Zotero Integration
 	- Install with `scoop` on windows: `scoop bucket add extras; scoop install obsidian`
-- Scoop 
-	- A command line tool for windows to help you install and keep software updated. 
-	- Working on University provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. 
-	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) latest versions of programs. 
-	- Installing a program with scoop is as simple as `scoop install program`. 
-	- Scoop searches for install recipes in buckets. Buckets can be added by typing `scoop bucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. 
-	- You can find an example of how to install and use `scoop` to setup a new Windows machine at `https://github.com/EriksenJ/_setup`. 
