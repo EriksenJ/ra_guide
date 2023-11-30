@@ -1,9 +1,9 @@
 
 # Introduction 
 
-This page describes the general RA guidelines we employ for our projects. The purpose of the guidelines are to make it easier to focus on _getting_ work done rather than on _how_ to do it. The guidelines draw heavily on 
+This page describes the general RA guidelines we employ for our projects. The purpose of the guidelines is to make it easier to focus on _getting_ work done rather than on _how_ to do it. The guidelines draw heavily on 
 
-- _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) 
+- _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF) 
 	- The document contains a general introduction to reproducibility challenges that many social science researchers have faced and how the two authors have tried to solve them in their lab. Emphasizes coding conventions, directories, and version control.  
 - _Lab Manual_. Gentzkow and Shapiro. Updated over time. [Link]
   - This supplements their (2014) document aimed at their RAs. It includes information on workflows, coding, data handling, and paper and slide production internally in their lab. We mainly follow their approaches to workflow (using GitHub issues to assign and resolve tasks).  
@@ -11,9 +11,9 @@ This page describes the general RA guidelines we employ for our projects. The pu
 How to get started 
 
 - Read this document.  
-- Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) 
-- Setup git and a GitHub account as described under `version control`. 
-- Install necessary software to work with markdown documents and R code. See under `Required Software`. 
+- Read [Gentzkow and Shapiro (2014)]
+- Set up git on your computer and a GitHub account as described under `Version Control`. 
+- Install the necessary software to work with markdown documents and R code. See under `Required Software`. 
 
 
 # Workflow 
@@ -41,10 +41,10 @@ How to get started
 ## Reporting and notes 
 
 - We write notes and documents in markdown format with files ending in `.md` unless another format is required. 
-	- Markdown documents can easily be compiled into word, PDF (via LaTeX), HTML, beamer PDF slides or other formats PDFs, word documents, or other formats using `pandoc` or `quarto`.
+	- Markdown documents can easily be compiled into Word, PDF (via LaTeX), HTML, beamer PDF slides, or other formats PDFs, word documents, or other formats using `pandoc` or `quarto`.
 	- Markdown files can be edited using most text editors. We suggest VS Code and Obsidian. 
-	- [Introduction to basic markdown syntax](https://www.markdownguide.org/basic-syntax/) by the developers behind original 
-- We keep personal running notes to make sure that we can always find thoughts on what has been done in the project. The documents should generally be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
+	- [Introduction to basic markdown syntax](https://www.markdownguide.org/basic-syntax/) written by the developers behind the original markdown language (it comes in many flavors).
+- We keep personal running notes. These generally contain drafts of information and notes on how we tackle tasks. The documents should typically be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
 
 
 ## References 
@@ -55,8 +55,8 @@ How to get started
 
 ## Writing papers 
 
-- We generally use Overleaf to write papers and paper drafts, unless otherwise specified. Overleaf allows us to 
-	- Work on the paper at the same time, and generally 
+- We use Overleaf to write papers and paper drafts in LaTeX format unless otherwise specified. Overleaf allows us to 
+	- Work on the paper at the same time
 	- Integrate references from shared Zotero libraries
 
 
@@ -87,7 +87,7 @@ presentations/
 paper/
 ```
 
-- All components containing code should have at least a `code`, `temp`, and `out` folder. For example, assume that the simple project contains a simulation exercise written in R showing the consistency of an econometric estimator. The code file outputs the graph `simulate_estimator_consistency_distribution.pdf`. The folders could look like 
+- All components containing code should have at least a `code`, `temp`, and `out` folder. For example, assume that the simple project contains a simulation exercise written in R showing the consistency of an econometric estimator. The code file outputs the graph `simulate_estimator_consistency_distribution.PDF`. The folders could look like 
 
 ```
 consistency_simulation/
@@ -95,7 +95,7 @@ consistency_simulation/
 		simulate_estimator_consistency.R 
 	temp/
 	out/
-		simulate_estimator_consistency_distribution.pdf
+		simulate_estimator_consistency_distribution.PDF
 lit_review/ 
 presentations/
 paper/
@@ -113,7 +113,7 @@ consistency_simulation/
 		simulate_estimator_consistency.R 
 	temp/
 	out/
-		simulate_estimator_consistency_distribution.pdf
+		simulate_estimator_consistency_distribution.PDF
 lit_review/ 
 presentations/
 paper/
@@ -179,7 +179,7 @@ dat |> export("builddata/out/clean_bef.parquet")
 - Helpful introductions to `make` for data analysis 
 	- [Automation and Make](https://swcarpentry.github.io/make-novice/) by Software Carpentry. 
 	- [Makefiles for R/Latex projects](https://robjhyndman.com/hyndsight/makefiles/) by Rob Hyndman.
-	- [Minimal make](https://kbroman.org/minimal_make/) by Karl Broman. Runs a couple of R scripts and creates a latex compiled pdf paper with the resulting figures.  
+	- [Minimal make](https://kbroman.org/minimal_make/) by Karl Broman. Runs a couple of R scripts and creates a latex compiled PDF paper with the resulting figures.  
 	- [GNU Make for Reproducible Data Analysis](http://zmjones.com/make/) by Zachary Jones. 
 - An important feature of `make` is that it compiles or runs project code based on a general recipe, the `makefile`.  The `makefile` consists of _targets_, _dependencies_, and _commands_, which together defines _rules_.   A `makefile` can contain multiple rules. These rules can be linked, for example, if a rule uses the target of another rule as a dependency. 
 	- _Target_: The output file or goal you want to achieve. E.g., `builddata/out/clean_data.parquet`
@@ -286,16 +286,16 @@ all: $(targets)
 ## Required 
 
 - Git 
-	- [Git] is a command line version control software. 
+	- [Git](https://git-scm.com/) is a command-line version control software. See more under `Version Control`
 	- Installation 
 		- [Create a GitHub account and install the Git desktop/command line clients](https://help.github.com/articles/set-up-git/).
-		- Installation via scoop on Windows machines: `scoop install git`
+		- Installation via Scoop on Windows machines: `Scoop install git`
 - VS Code 
-	- [VS Code](https://code.visualstudio.com/) is general text editor you can use to edit markdown, Python, R, LaTeX, and many other file types. 
+	- [VS Code](https://code.visualstudio.com/) is a general text editor you can use to edit markdown, Python, R, LaTeX, and many other file types. 
 	- It has excellent Git version control features included 
 	- Installation: 
 		- Follow Jeppe Druedahl's [guide to install VSCode](https://numeconcopenhagen.netlify.app/guides/python-setup/).
-		- Install using scoop on a Windows machine with `scoop bucket add extras; scoop install vscode` (see `Software/Suggestions` on using ). 
+		- Install using Scoop on a Windows machine with `Scoop bucket add extras; Scoop install vscode` (see `Software/Suggestions` on using ). 
 	- You can add functionality by installing extensions. Some favorite extensions that you should install: 
 		- Git History
 		- GitHub Copilot (free for academic users) 
@@ -308,49 +308,48 @@ all: $(targets)
 		- vscode-pandoc 
 	- Guides: 
 		- [Markdown and Visual Studio Code](https://code.visualstudio.com/docs/languages/markdown) 
-	- We use `pandoc` or `quarto` to convert markdown files into word, pdf (via LaTeX), beamer slides, or HTML files.
+	- We use `pandoc` or `quarto` to convert markdown files into Word, PDF (via LaTeX), beamer slides, or HTML files.
 - R, RStudio, rtools
-	- [R](https://www.r-project.org/) is an open source statistical programming language that has gotten a lot of traction in the Econometrics community. Most new developments in Econometrics are likely to arrive to R at the same time or prior to, e.g., Stata. 
+	- [R](https://www.r-project.org/) is an open-source statistical programming language that has gotten a lot of traction in the Econometrics community. Most new developments in Econometrics are likely to arrive to R at the same time or prior to, e.g., Stata. 
 	- [Rstudio](https://posit.co/products/open-source/rstudio/) is an editor specialized for R coding. We typically use RStudio whenever we edit R code.  
 	- [rtools](https://cran.r-project.org/bin/windows/Rtools/) is a set of software tools that R will need to compile some packages, including the `arrow` package we use for parquet format IO. 
 	- Installation: 
 		- [Installation guide for R and RStudio] by Posit (the developers behind RStudio).
 		- [Installation guide for rtools](https://cran.r-project.org/bin/windows/Rtools/) via CRAN. 
-		- Installation via scoop on Windows machines: `scoop bucket add r-bucket https://github.com/cderv/r-bucket.git; scoop install r; scoop install rstudio; scoop install rtools`
+		- Installation via Scoop on Windows machines: `Scoop bucket add r-bucket https://github.com/cderv/r-bucket.git; scoop install r; scoop install rstudio; scoop install rtools`
 - Pandoc 
-	- [Pandoc](https://pandoc.org/index.html) is an open source command line tool that can be used to convert between many different text formats. We will typically use it to convert between markdown and PDF/word documents. 
+	- [Pandoc](https://pandoc.org/index.html) is an open-source command line tool that can be used to convert between many different text formats. We will typically use it to convert between markdown and PDF/word documents. 
 	- Installation: 
-		-  [Guide](https://www.google.com/search?client=firefox-b-d&q=pandoc+) from the developers. 
-		- Installation via scoop on Windows machines: `scoop install pandoc`
+		-  [Guide](https://www.google.com/search?client=firefox-b-d&q=pandoc+) from the developers. Installation via Scoopon Windows machines: `scoop install pandoc`
 - Quarto 
-	- [Quarto](https://quarto.org/) is software developed by Posit that allows you to write quarto documents that contain both markdown text and integrated R, Python, or some other relevant code in RStudio or VSCode. This is particularly helpful when some code requires extensive documentation.    
+	- [Quarto](https://quarto.org/) is a piece of software developed by Posit that allows you to write quarto documents containing both markdown text and integrated R, Python, or some other relevant code. The documents can be edited in RStudio or VSCode. Quarto documents are beneficial when some code requires extensive documentation.    
 	- Installation: 
 		-  [Guide](https://quarto.org/docs/get-started/) from the developers. 
-		- Installation via scoop on Windows machines: `scoop install quarto`
+		- Installation via Scoop on Windows machines: `scoop install quarto`
 - Zotero
-	- [Zotero](https://www.zotero.org/) is an open source reference manager. Using it with the extension `betterbiblatex` allows us to export `.bib` files with all references. These can then be referenced in markdown documents compiled with `pandoc` or `quarto`, or in LaTeX documents.  
+	- [Zotero](https://www.zotero.org/) is an open-source reference manager. Using it with the extension `betterbiblatex` allows us to export `.bib` files with all references. These can then be referenced in markdown documents compiled with `pandoc` or `quarto`, or in LaTeX documents.  
 	- Installation 
 		- [Guide](https://www.zotero.org/download/) from the developers. 
-		- Installation via scoop on Windows machines: `scoop install zotero`
+		- Installation via Scoop on Windows machines: `scoop install zotero`
 
 
 ## Suggestions 
 
-- Scoop 
+- Scoop
 	- A Powershell tool for Windows that helps you install and keep software updated. 
 	- Working on university-provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. Scoop does this. 
 	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) the latest versions of programs. 
 	- Installing a program with `scoop` is as simple as `scoop install program`. 
-	- Updating a program with `scoop` is as simple as `scoop update program`. Type `scopp update *` to update all installed programs.
-	- Scoop searches for install recipes in buckets. Buckets can be added by typing `scoop bucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. You can find an example of installing and using a `scoop` to set up a new Windows machine at `https://github.com/EriksenJ/_setup`. 
+	- Updating a program with `scoop` is as simple as `Scoopupdate program`. Type `scopp update *` to update all installed programs.
+	- Scoop searches for install recipes in buckets. Buckets can be added by typing `Scoopbucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. You can find an example of installing and using a `scoop` to set up a new Windows machine at `https://github.com/EriksenJ/_setup`. 
 - Obsidian 
-	- A markdown-based digital note editor with latex compilation to pdf ready out of the box.  
+	- A markdown-based digital note editor with latex compilation to PDF ready out of the box.  
 	- Some suggested plugins 
 		- LaTeX Suite 
 		- Linter 
 		- Obsidian Git 
 		- Templater 
 		- Zotero Integration
-	- Install with `scoop` on windows: `scoop bucket add extras; scoop install obsidian`
+	- Install with `scoop` on windows: `Scoopbucket add extras; scoop install obsidian`
 - Linh T. Tô has a great set of (free) resources on her website ([link](https://linh.to/resources/). 
 
