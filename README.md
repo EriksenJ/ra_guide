@@ -66,6 +66,12 @@ How to get started
 # Version Control 
 
 - We use the [Git version control system](https://github.com/gslab-econ/lab-manual/wiki/Code) to track changes to our notes and code. Git allows you to add, delete, or modify files, mark them as changed (committing), and finally add them to the project (pushing to remote repository). All changes to files will then appear in the project Git history.
+- We use GitHub to host our remote repositories for local, _non-sensitive_ project files. 
+    - You can keep the local non-sensitive project files where you prefer. 
+    - You will pull and push changes to this remote directory to update general project files.  
+    - A supervisor will add you to the relevant project(s) on GitHub.
+- We use a local Git repository for content secure servers.
+- Here, we all work from the same directory containing all relevant files simultaneously. 
 - A basic workflow for using Git is to Pull the latest version of project files from the remote repository. 
     1. Make changes to the files you are working on. 
     2. Commit your changes. 
