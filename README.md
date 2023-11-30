@@ -13,7 +13,7 @@ How to get started
 - Read this document.  
 - Read [Gentzkow and Shapiro (2014)]
 - Set up git on your computer and a GitHub account as described under `Version Control`. 
-- Install the necessary software to work with markdown documents and R code. See under `Required Software`. 
+- Install the necessary software on your local computer. Find the list and installation guides under `Software/Required`. 
 
 
 # Workflow 
