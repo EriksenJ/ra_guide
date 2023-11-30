@@ -64,7 +64,14 @@ How to get started
 
 # Version Control 
 
-- We use the Git version control system to organize our [code](https://github.com/gslab-econ/lab-manual/wiki/Code) 
+- We use the [Git version control system](https://github.com/gslab-econ/lab-manual/wiki/Code) to track changes to our notes and code.  
+  - Git works by allowing you to create changes to files, then marking them as changed (committing), and finally adding them to the project (pushing to repository). 
+- A basic workflow for using Git is as follows: 
+    1. Pull latest version of project files from the remote repository. 
+    2. Make changes to the files you are working on. 
+    3. Commit your changes. 
+    4. Pull latest updates from the remote repository and resolve any conflicts. 
+    5. Push your changes to the remote repository. 
 - Guides 
 	- Basic (takes about 20 minutes total and well worth it): [Git Handbook](https://guides.github.com/introduction/git-handbook/), [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/), [Mastering Issues](https://guides.github.com/features/issues/), [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 	- Detailed: [Pro Git](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control), [Version Control with Git](https://www.amazon.com/Version-Control-Git-collaborative-development-ebook/dp/B008Y4OR3A/ref=mt_kindle?_encoding=UTF8&me=&qid=1531951134), Chapters 4-9
