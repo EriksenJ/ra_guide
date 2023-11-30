@@ -76,7 +76,7 @@ How to get started
 
 ## Project storage 
 
-- We generally store non-sensitive project files in a GitHub project repository. 
+- We generally store non-sensitive project files in private GitHub project repository. 
   - This ensures that all project participants have access to the relevant files.
   - It also makes it easy to keep track of changes to files and revert to previous versions if necessary. We use the `git` version control system to do this.
   - Supervisors will add you to the relevant project(s) on GitHub.
