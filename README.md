@@ -11,7 +11,7 @@ This page describes the general RA guidelines we employ for our projects. The pu
 How to get started 
 
 - Read this document.  
-- Read [Gentzkow and Shapiro (2014)]
+- Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF)
 - Set up git on your computer and a GitHub account as described under `Version Control`. 
 - Install the necessary software on your local computer. Find the list and installation guides under `Software/Required`. 
 
