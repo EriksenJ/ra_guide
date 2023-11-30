@@ -74,6 +74,22 @@ How to get started
 
 # Project structure 
 
+## Project storage 
+
+- We generally store non-sensitive project files in a GitHub project repository. 
+  - This ensures that all project participants have access to the relevant files.
+  - It also makes it easy to keep track of changes to files and revert to previous versions if necessary. We use the `git` version control system to do this.
+  - Supervisors will add you to the relevant project(s) on GitHub.
+- Sensitive project files are stored on a secure KU server. 
+  - Supervisors can give you access to relevant folders. 
+- GDPR sensitive administrative data that we access via Statistics Denmark is stored on a secure Statistics Denmark server.
+  - Documentation  
+  - Getting access requires the written permission from the project supervisor and the head of department. 
+  - Before getting access, you are required read the internal UCPH ECON and Statistics Denmark guidelines on working with sensitive data.
+  - We follow the internal UCPH ECON guidelines on working with sensitive data, including what information can be downloaded from the secure server. 
+
+
+
 ## Directories  
 
 - Our projects are typically distributed locally and on a secure server.  The local project might contain notes, literature reviews, code that doesn't need to run on a secure server, and paper drafts. The secure server project location will exist when the project requires restricted access data (e.g., from Statistics Denmark). 
