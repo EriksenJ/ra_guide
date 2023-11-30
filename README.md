@@ -375,8 +375,8 @@ all: $(targets)
 	- Working on university-provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. Scoop does this. 
 	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) the latest versions of programs. 
 	- Installing a program with `scoop` is as simple as `scoop install program`. 
-	- Updating a program with `scoop` is as simple as `Scoopupdate program`. Type `scopp update *` to update all installed programs.
-	- Scoop searches for install recipes in buckets. Buckets can be added by typing `Scoopbucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. You can find an example of installing and using a `scoop` to set up a new Windows machine at `https://github.com/EriksenJ/_setup`. 
+	- Updating a program with `scoop` is as simple as `Scoop update program`. Type `scoop update *` to update all installed programs.
+	- Scoop searches for install recipes in buckets. Buckets can be added by typing `scoop bucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. You can find an example of installing and using a `scoop` to set up a new Windows machine at `https://github.com/EriksenJ/_setup`. 
 - Obsidian 
 	- A markdown-based digital note editor with latex compilation to PDF ready out of the box.  
 	- Some suggested plugins 
@@ -385,6 +385,6 @@ all: $(targets)
 		- Obsidian Git 
 		- Templater 
 		- Zotero Integration
-	- Install with `scoop` on windows: `Scoopbucket add extras; scoop install obsidian`
-- Linh T. Tô has a great set of (free) resources on her website ([link](https://linh.to/resources/). 
+	- Install with `scoop` on windows: `scoop bucket add extras; scoop install obsidian`
+- Linh T. Tô has a great set of (free) resources on her [website](https://linh.to/resources/). 
 
