@@ -30,8 +30,7 @@ How to get started
 	- One or more task assignees.
 - When working on a task 
 	- Keep documentation of your work. We suggest having a `running_notes_(your initials).md` document where you store your thoughts. A good practice is to add headlines with dates so that it becomes easier to go back to find thoughts related to a task you previously worked on.  
-- Asking clarifying questions 
-    - When working on a task, asking clarifying questions will often be necessary. 
+- Asking questions 
     - We encourage you to work independently but ask questions when you realize you are stuck. We all tend to get stuck very often when we start working with administrative data, so do come around and ask if something comes up! 
     - If you ask about clarifications or questions related to a task in person, add a note about the questions and answers to the GitHub issue so we can track the progress.  
 - A task is closed by the task supervisor when 
