@@ -277,7 +277,7 @@ Linh T. Tô has a great set of (free) resources on her website ([link](https://l
 		- Quarto 
 		- R (consider using this together with `radian`)
 		- Stata Enhanced  
-	- Installation with `scoop` on windows: `scoop install vscode`
+	- Install with `scoop` on windows: `scoop bucket add extras; scoop install vscode`
 - Obsidian 
 	- A markdown-based digital note editor with latex compilation to pdf ready out of the box.  
 	- Some suggested plugins 
@@ -286,6 +286,34 @@ Linh T. Tô has a great set of (free) resources on her website ([link](https://l
 		- Obsidian Git 
 		- Templater 
 		- Zotero Integration
-- Scoop - Installing software on Windows 
+	- Install with `scoop` on windows: `scoop bucket add extras; scoop install obsidian`
+- Scoop 
 	- A command line tool for windows to help you install and keep software updated. 
 	- Working on University provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. I presently use the powershell command-line tool `scoop` to manage the installation of most software on my system. 
+	- Scoop searches for install recipes in buckets. I often include the buckets extras, nerd-fonts, and r-bucket with `scoop bucket add ...` 
+	- 
+
+```
+scoop bucket add extras 
+scoop bucket add nerd-fonts
+scoop bucket add r-bucket https://github.com/cderv/r-bucket.git
+```
+	- Programs I typically install with scoop
+		- 'vscode',
+	    - 'git',
+		- 'r',
+		- 'rstudio',
+		- 'quarto',
+		- 'julia',
+		- 'zotero',
+		- 'spotify',
+		- 'sublime-text',
+		- 'tinytex',
+		- 'ubuntu-nf',
+		- 'ubuntumono-nf',
+		- 'firacode',
+		- 'powertoys',
+		- 'firefox',
+		- 'obsidian',
+		- 'miniconda3',
+		- `rtools`
