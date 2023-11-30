@@ -28,13 +28,14 @@ How to get started
 	- A task supervisor. 
 	- One or more task assignees.
 - When working on a task 
-	- Keep documentation of your work. We suggest having a `running_notes.md` document where you store your notes with forth running dates (top of the document is the latest entry). 
+	- Keep documentation of your work. We suggest having a `running_notes_(your initials).md` document where you store your thoughts. A good practice is to add headlines with dates so that it becomes easier to go back to find thoughts related to a task you previously worked on.  
 - Asking clarifying questions 
     - When working on a task, asking clarifying questions will often be necessary. 
-    - We encourage you to work independently but ask questions when you realize you are stuck. This tends to happen very often when we start working with administrative data! If you ask questions in person, add a note about the questions and answers to the GitHub issue page so we can track what we discuss. 
-	- You can also ask for clarifications under the GitHub issue. 
+    - We encourage you to work independently but ask questions when you realize you are stuck. We all tend to get stuck very often when we start working with administrative data, so do come around and ask if something comes up! 
+    - If you ask about clarifications or questions related to a task in person, add a note about the questions and answers to the GitHub issue so we can track the progress.  
 - A task is closed by the task supervisor when 
-	- The relevant outcomes have been created/reached. The task assignee has written a reply to the GitHub issue of how they completed the task and where outcome files are located (e.g., the code cleaning a relevant bit of data). 
+	- The relevant outcomes have been created/reached. 
+	- The task assignee has written a reply to the GitHub issue on how they completed the task and where relevant outcome files are located (e.g., the code file cleaning a relevant bit of data or the note summarizing results). 
 	- The task supervisor agrees that the task has been completed. 
 
 
