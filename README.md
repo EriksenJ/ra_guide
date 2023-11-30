@@ -11,11 +11,14 @@ This page describes the general RA guidelines we employ for our projects. The pu
 How to get started 
 
 - Read this document.  
-- Setup git and a GitHub account as described under `version control` 
-- Install any necessary software to work with markdown documents and R code. See `Software suggestions`. 
+- Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) 
+- Setup git and a GitHub account as described under `version control`. 
+- Install necessary software to work with markdown documents and R code. See under `Required Software`. 
 
 
 # Workflow 
+
+## Tasks 
 
 - We generally follow the workflow [approach](https://github.com/gslab-econ/lab-manual/wiki/Workflow) from Gentzkow and Shapiro. 
 - Tasks will be specified on GitHub under the relevant project as `issues`. We do this to keep track of open tasks and output from tasks. You can familiarize yourself with GitHub issues [here](https://github.com/features/issues)](https://github.com/features/issues). 
@@ -35,24 +38,41 @@ How to get started
 	- The task supervisor agrees that the task has been completed. 
 
 
-# Reporting and notes 
+## Reporting and notes 
 
-- When you write documents, including notes on a task or documentation, the preferred output format is markdown files ending in `.md`. These can easily be compiled into PDFs, word documents, or other formats using `pandoc` or `quarto`.  
-- Markdown files can be edited using most text editors. We suggest VS Code and Obsidian. 
+- We write notes and documents in markdown format with files ending in `.md` unless another format is required. 
+	- Markdown documents can easily be compiled into word, PDF (via LaTeX), HTML, beamer PDF slides or other formats PDFs, word documents, or other formats using `pandoc` or `quarto`.
+	- Markdown files can be edited using most text editors. We suggest VS Code and Obsidian. 
+	- [Introduction to basic markdown syntax](https://www.markdownguide.org/basic-syntax/) by the developers behind original 
+- We keep personal running notes to make sure that we can always find thoughts on what has been done in the project. The documents should generally be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
+
+
+## References 
+
+- We use Zotero to maintain shared libraries with project references.  
+- We use the `betterbiblatex` extension for Zotero to export `.bib` files to projects or to Overleaf. 
+
+
+## Writing papers 
+
+- We generally use Overleaf to write papers and paper drafts, unless otherwise specified. Overleaf allows us to 
+	- Work on the paper at the same time, and generally 
+	- Integrate references from shared Zotero libraries
 
 
 # Version Control 
 
 - We use the Git version control system to organize our [code](https://github.com/gslab-econ/lab-manual/wiki/Code) 
+- Guides 
+	- Basic (takes about 20 minutes total and well worth it): [Git Handbook](https://guides.github.com/introduction/git-handbook/), [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/), [Mastering Issues](https://guides.github.com/features/issues/), [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+	- Detailed: [Pro Git](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control), [Version Control with Git](https://www.amazon.com/Version-Control-Git-collaborative-development-ebook/dp/B008Y4OR3A/ref=mt_kindle?_encoding=UTF8&me=&qid=1531951134), Chapters 4-9
 - Setup: (based on https://github.com/gslab-econ/lab-manual/wiki/Setup) 
-	- Resources
-	    - Basic (takes about 20 minutes total and well worth it): [Git Handbook](https://guides.github.com/introduction/git-handbook/), [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/), [Mastering Issues](https://guides.github.com/features/issues/), [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
-	    - Detailed: [Pro Git](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control), [Version Control with Git](https://www.amazon.com/Version-Control-Git-collaborative-development-ebook/dp/B008Y4OR3A/ref=mt_kindle?_encoding=UTF8&me=&qid=1531951134), Chapters 4-9
-	- Setup.
-	    - [Create a GitHub account and install the Git desktop/command line clients](https://help.github.com/articles/set-up-git/).
+	- [Create a GitHub account and install the Git desktop/command line clients](https://help.github.com/articles/set-up-git/).
 
 
-# Directories  
+# Project structure 
+
+## Directories  
 
 - Our projects are typically distributed locally and on a secure server.  The local project might contain notes, literature reviews, code that doesn't need to run on a secure server, and paper drafts. The secure server project location will exist when the project requires restricted access data (e.g., from Statistics Denmark). 
 - We generally apply the rules from Gentzkow and Shapiro (2014), chapter 4: 
@@ -100,36 +120,7 @@ paper/
 ```
 
 
-
-# Code 
-
-- Scripts are named according to what they do. 
-	- _Example_: Assume we have written some code that cleans the raw `BEF` register data for use in subsequent analyses. The file (sh)could be named `clean_bef.R`. 
-- Script outputs must contain the name of the producing script and be informative about the content. 
-	- _Example_: Assume the file `descriptives_main_sample.R` outputs two summary tables in LaTeX format. One is a balance table with means and differences in means between treatment and control groups, and one contains general summary statistics for the full sample. These (sh)could be named `descriptives_main_sample_balance.tex` and `descriptives_main_sample_summary.tex`.
-- When possible, use R to solve coding tasks. 
-- No line of code should be more than 100 characters long. All languages we work in allow you to break a logical line across multiple lines on the page (e.g., using `///` in Stata or `...` in Matlab). You may want your editor to show a “margin” of 100 characters.
-- Functions should not typically be longer than 200 lines.
-
-
-## R 
-
-- We follow [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml) 
-- Exceptions to style guide: 
-	- We do not follow their naming conventions. Do not use dots; separate using underscores, and keep code lowercase. Example: `.CalcMeans()` should be `calc_mean()`.  
-- Use the `rio` [package](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) for data import/export. It supports many file types and generally uses the most efficient IO tool for importing/exporting the file format.
-- Use the `data.table` [package](https://stata2r.github.io/data_table/) for data wrangling. 
-	- [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) from the authors of the package. 
-	- Introduction for Stata users:  https://stata2r.github.io/data_table/
-	- [data.table chapter](https://bookdown.org/ronsarafian/IntrotoDS/datatable.html) in Introduction to Data Science. 
-- Use  the `fixest` [package](https://lrberge.github.io/fixest/) by Laurent Berge for estimating most types of statistical models, particularly linear and IV models with fixed effects
-	- It provides estimation tools typically much faster than other options in R and Stata. 
-	- Documentation is available [here](https://lrberge.github.io/fixest/). 
-- We typically use the `modelsummary` [package](https://modelsummary.com) for summarizing regression results and creating summary statistics tables outputted to latex or markdown format. 
-	- An introduction is available [here](https://modelsummary.com). 
-
-
-# Data storage 
+## Data storage 
 
 - When possible, store data in `.parquet` format. 
 - We often work with large administrative data files that can take up many GB of space. We prefer the parquet format to reduce our server footprint and increase IO speed. This is a so-called columnar format, meaning that it is possible to load  These are generally highly compressed 
@@ -141,6 +132,36 @@ library(rio)
 dat = import("builddata/out/clean_bef.parquet")
 dat |> export("builddata/out/clean_bef.parquet")
 ```
+
+
+# Code 
+
+
+## General 
+
+- Scripts are named according to what they do. 
+	- _Example_: Assume we have written some code that cleans the raw `BEF` register data for use in subsequent analyses. The file (sh)could be named `clean_bef.R`. 
+- Script outputs must contain the name of the producing script and be informative about the content. 
+	- _Example_: Assume the file `descriptives_main_sample.R` outputs two summary tables in LaTeX format. One is a balance table with means and differences in means between treatment and control groups, and one contains general summary statistics for the full sample. These (sh)could be named `descriptives_main_sample_balance.tex` and `descriptives_main_sample_summary.tex`.
+- No line of code should be more than 100 characters long. All languages we work in allow you to break a logical line across multiple lines on the page (e.g., using `///` in Stata or `...` in Matlab). You may want your editor to show a “margin” of 100 characters.
+- Functions should not typically be longer than 200 lines.
+
+
+## R 
+
+- We follow [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml) 
+- Exceptions to style guide: 
+	- Do not use dots; separate using underscores, and keep lowercase. Example: `.CalcMeans()` should be `calc_mean()`.  
+- Use the `rio` [package](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) for data import/export. It supports many file types and generally uses the most efficient IO tool for importing/exporting the file format.
+- Use the `data.table` [package](https://stata2r.github.io/data_table/) for data wrangling. 
+	- [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) from the authors of the package. 
+	- Introduction for Stata users:  https://stata2r.github.io/data_table/
+	- [data.table chapter](https://bookdown.org/ronsarafian/IntrotoDS/datatable.html) in Introduction to Data Science. 
+- Use  the `fixest` [package](https://lrberge.github.io/fixest/) by Laurent Berge for estimating most types of statistical models, particularly linear and IV models with fixed effects
+	- It provides estimation tools typically much faster than other options in R and Stata. 
+	- Documentation is available [here](https://lrberge.github.io/fixest/). 
+- We typically use the `modelsummary` [package](https://modelsummary.com) for summarizing regression results and creating summary statistics tables outputted to latex or markdown format. 
+	- An introduction is available [here](https://modelsummary.com). 
 
 
 # Automation
@@ -259,34 +280,69 @@ all: $(targets)
 ```
 
 
-
-# Software suggestions 
-
-Linh T. Tô has a great set of (free) resources on her website ([link](https://linh.to/resources/). 
-
-Below follows suggestions for software that we use in our workflow.
+# Software 
 
 
-- Scoop 
-	- A Powershell tool for Windows that helps you install and keep software updated. Working on university-provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. 
-	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) the latest versions of programs. 
-	- Installing a program with `scoop` is as simple as `scoop install program`. 
-	- Updating a program with `scoop` is as simple as `scoop update program`. Type `scopp update *` to update all installed programs.
-	- Scoop searches for install recipes in buckets. Buckets can be added by typing `scoop bucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. You can find an example of installing and using a `scoop` to set up a new Windows machine at `https://github.com/EriksenJ/_setup`. 
+## Required 
+
+- Git 
+	- [Git] is a command line version control software. 
+	- Installation 
+		- [Create a GitHub account and install the Git desktop/command line clients](https://help.github.com/articles/set-up-git/).
+		- Installation via scoop on Windows machines: `scoop install git`
 - VS Code 
-	- A general text editor great for all things from developing python, R, or markdown document. 
-	- Has great version control features included 
-	- You can add functionality by installing extensions. Some favorite extensions 
+	- [VS Code](https://code.visualstudio.com/) is general text editor you can use to edit markdown, Python, R, LaTeX, and many other file types. 
+	- It has excellent Git version control features included 
+	- Installation: 
+		- Follow Jeppe Druedahl's [guide to install VSCode](https://numeconcopenhagen.netlify.app/guides/python-setup/).
+		- Install using scoop on a Windows machine with `scoop bucket add extras; scoop install vscode` (see `Software/Suggestions` on using ). 
+	- You can add functionality by installing extensions. Some favorite extensions that you should install: 
 		- Git History
 		- GitHub Copilot (free for academic users) 
-		- Grammarly (for the non-native English writers) 
 		- LaTeX workshop
 		- Markdown All in One 
 		- Python
 		- Quarto 
 		- R (consider using this together with `radian`)
 		- Stata Enhanced  
-	- Install with `scoop` on windows: `scoop bucket add extras; scoop install vscode`
+		- vscode-pandoc 
+	- Guides: 
+		- [Markdown and Visual Studio Code](https://code.visualstudio.com/docs/languages/markdown) 
+	- We use `pandoc` or `quarto` to convert markdown files into word, pdf (via LaTeX), beamer slides, or HTML files.
+- R, RStudio, rtools
+	- [R](https://www.r-project.org/) is an open source statistical programming language that has gotten a lot of traction in the Econometrics community. Most new developments in Econometrics are likely to arrive to R at the same time or prior to, e.g., Stata. 
+	- [Rstudio](https://posit.co/products/open-source/rstudio/) is an editor specialized for R coding. We typically use RStudio whenever we edit R code.  
+	- [rtools](https://cran.r-project.org/bin/windows/Rtools/) is a set of software tools that R will need to compile some packages, including the `arrow` package we use for parquet format IO. 
+	- Installation: 
+		- [Installation guide for R and RStudio] by Posit (the developers behind RStudio).
+		- [Installation guide for rtools](https://cran.r-project.org/bin/windows/Rtools/) via CRAN. 
+		- Installation via scoop on Windows machines: `scoop bucket add r-bucket https://github.com/cderv/r-bucket.git; scoop install r; scoop install rstudio; scoop install rtools`
+- Pandoc 
+	- [Pandoc](https://pandoc.org/index.html) is an open source command line tool that can be used to convert between many different text formats. We will typically use it to convert between markdown and PDF/word documents. 
+	- Installation: 
+		-  [Guide](https://www.google.com/search?client=firefox-b-d&q=pandoc+) from the developers. 
+		- Installation via scoop on Windows machines: `scoop install pandoc`
+- Quarto 
+	- [Quarto](https://quarto.org/) is software developed by Posit that allows you to write quarto documents that contain both markdown text and integrated R, Python, or some other relevant code in RStudio or VSCode. This is particularly helpful when some code requires extensive documentation.    
+	- Installation: 
+		-  [Guide](https://quarto.org/docs/get-started/) from the developers. 
+		- Installation via scoop on Windows machines: `scoop install quarto`
+- Zotero
+	- [Zotero](https://www.zotero.org/) is an open source reference manager. Using it with the extension `betterbiblatex` allows us to export `.bib` files with all references. These can then be referenced in markdown documents compiled with `pandoc` or `quarto`, or in LaTeX documents.  
+	- Installation 
+		- [Guide](https://www.zotero.org/download/) from the developers. 
+		- Installation via scoop on Windows machines: `scoop install zotero`
+
+
+## Suggestions 
+
+- Scoop 
+	- A Powershell tool for Windows that helps you install and keep software updated. 
+	- Working on university-provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. Scoop does this. 
+	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) the latest versions of programs. 
+	- Installing a program with `scoop` is as simple as `scoop install program`. 
+	- Updating a program with `scoop` is as simple as `scoop update program`. Type `scopp update *` to update all installed programs.
+	- Scoop searches for install recipes in buckets. Buckets can be added by typing `scoop bucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. You can find an example of installing and using a `scoop` to set up a new Windows machine at `https://github.com/EriksenJ/_setup`. 
 - Obsidian 
 	- A markdown-based digital note editor with latex compilation to pdf ready out of the box.  
 	- Some suggested plugins 
@@ -296,3 +352,5 @@ Below follows suggestions for software that we use in our workflow.
 		- Templater 
 		- Zotero Integration
 	- Install with `scoop` on windows: `scoop bucket add extras; scoop install obsidian`
+- Linh T. Tô has a great set of (free) resources on her website ([link](https://linh.to/resources/). Below are suggestions for software that we use in our workflow.
+
