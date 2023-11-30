@@ -289,31 +289,8 @@ Linh T. Tô has a great set of (free) resources on her website ([link](https://l
 	- Install with `scoop` on windows: `scoop bucket add extras; scoop install obsidian`
 - Scoop 
 	- A command line tool for windows to help you install and keep software updated. 
-	- Working on University provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. I presently use the powershell command-line tool `scoop` to manage the installation of most software on my system. 
-	- Scoop searches for install recipes in buckets. I often include the buckets extras, nerd-fonts, and r-bucket with `scoop bucket add ...` 
-	- 
-
-```
-scoop bucket add extras 
-scoop bucket add nerd-fonts
-scoop bucket add r-bucket https://github.com/cderv/r-bucket.git
-```
-	- Programs I typically install with scoop
-		- 'vscode',
-	    - 'git',
-		- 'r',
-		- 'rstudio',
-		- 'quarto',
-		- 'julia',
-		- 'zotero',
-		- 'spotify',
-		- 'sublime-text',
-		- 'tinytex',
-		- 'ubuntu-nf',
-		- 'ubuntumono-nf',
-		- 'firacode',
-		- 'powertoys',
-		- 'firefox',
-		- 'obsidian',
-		- 'miniconda3',
-		- `rtools`
+	- Working on University provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. 
+	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) latest versions of programs. 
+	- Installing a program with scoop is as simple as `scoop install program`. 
+	- Scoop searches for install recipes in buckets. Buckets can be added by typing `scoop bucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. 
+	- You can find an example of how to install and use `scoop` to setup a new Windows machine at `https://github.com/EriksenJ/_setup`. 
