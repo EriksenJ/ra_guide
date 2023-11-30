@@ -43,7 +43,7 @@ How to get started
 
 - We write notes and documents in markdown format with files ending in `.md` unless another format is required. 
 	- Markdown documents can easily be compiled into Word, PDF (via LaTeX), HTML, beamer PDF slides, or other formats using `pandoc` or `quarto`.
-	- Markdown files can be edited using most text editors. We suggest VS Code and Obsidian. 
+	- Markdown files can be edited using most text editors. We suggest VSCode and Obsidian. 
 	- [Introduction to basic markdown syntax](https://www.markdownguide.org/basic-syntax/) written by the developers behind the original markdown language (it comes in many flavors).
 - We keep personal running notes. These generally contain drafts of information and notes on how we tackle tasks. The documents should typically be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
 
@@ -322,8 +322,8 @@ all: $(targets)
 	- Installation 
 		- [Create a GitHub account and install the Git desktop/command line clients](https://help.github.com/articles/set-up-git/).
 		- Installation via Scoop on Windows machines: `Scoop install git`
-- VS Code 
-	- [VS Code](https://code.visualstudio.com/) is a general text editor you can use to edit markdown, Python, R, LaTeX, and many other file types. 
+- VSCode 
+	- [VSCode](https://code.visualstudio.com/) is a general text editor you can use to edit markdown, Python, R, LaTeX, and many other file types. 
 	- It has excellent Git version control features included 
 	- Installation: 
 		- Follow Jeppe Druedahl's [guide to install VSCode](https://numeconcopenhagen.netlify.app/guides/python-setup/).
