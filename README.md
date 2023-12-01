@@ -43,7 +43,8 @@ How to get started
 ## Reporting and notes 
 
 - We write notes and documents in markdown format with files ending in `.md` unless another format is required. 
-	- Markdown documents can easily be compiled into Word, PDF (via LaTeX), HTML, beamer PDF slides, or other formats using `pandoc` or `quarto`.
+	- Markdown documents can easily be compiled into Word, PDF (via LaTeX), HTML, beamer PDF slides, or other formats using `pandoc` or `quarto`. 
+	- Searching (and replacing) across multiple markdown files for content using typical text editors is easy. 
 	- Markdown files can be edited using most text editors. We suggest VSCode and Obsidian. 
 	- [Introduction to basic markdown syntax](https://www.markdownguide.org/basic-syntax/) written by the developers behind the original markdown language (it comes in many flavors).
 - We keep personal running notes documents. These typically contain thoughts and drafts for notes and tasks. The document will typically be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
@@ -324,13 +325,13 @@ all: $(targets)
 	- [Git](https://git-scm.com/) is a command-line version control software. See more under `Version Control`
 	- Installation 
 		- [Create a GitHub account and install the Git desktop/command line clients](https://help.github.com/articles/set-up-git/).
-		- Installation via Scoop on Windows machines: `Scoop install git`
+		- Installation via Scoop on Windows machines: `scoop install git`
 - VSCode 
 	- [VSCode](https://code.visualstudio.com/) is a general text editor you can use to edit markdown, Python, R, LaTeX, and many other file types. 
 	- It has excellent Git version control features included 
 	- Installation options: 
 		- Follow Jeppe Druedahl's [guide to install VSCode](https://numeconcopenhagen.netlify.app/guides/python-setup/).
-		- Install using Scoop on a Windows machine with `Scoop bucket add extras; Scoop install vscode` (see `Software/Suggestions` on using ). 
+		- Install using Scoop on a Windows machine with `scoop bucket add extras; scoop install vscode` (see `Software/Suggestions` on using ). 
 	- You can add functionality by installing extensions. Some extensions you'll likely want to install: 
 		- Git History
 		- GitHub Copilot (free for academic users) 
@@ -352,6 +353,11 @@ all: $(targets)
 		- [Installation guide for R and RStudio] by Posit (the developers behind RStudio).
 		- [Installation guide for rtools](https://cran.r-project.org/bin/windows/Rtools/) via CRAN. 
 		- Installation via Scoop on Windows machines: `Scoop bucket add r-bucket https://github.com/cderv/r-bucket.git; scoop install r; scoop install rstudio; scoop install rtools`
+- Tinytex 
+  - [Tinytex](https://yihui.org/tinytex/) is a lightweight LaTeX distribution that allows you to compile LaTeX documents to PDF.
+  - Installation options: 
+    - [Guide](https://yihui.org/tinytex/) from the developers.
+    - Installation via Scoop on Windows machines: `scoop install tinytex`
 - Pandoc 
 	- [Pandoc](https://pandoc.org/index.html) is an open-source command line tool that can be used to convert between many different text formats. We will typically use it to convert between markdown and PDF/word documents. 
 	- Installation options: 
@@ -377,6 +383,8 @@ all: $(targets)
 
 - Scoop
 	- A Powershell tool for Windows that helps you install and update software updated. 
+	- Installation options: 
+    	- [Guide](https://scoop.sh/) from the developers.
 	- Working on university-provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. Scoop does this. 
 	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) the latest versions of programs. 
 	- Installing a program with `scoop` is as simple as `scoop install program`. 
