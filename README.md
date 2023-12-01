@@ -36,8 +36,8 @@ How to get started
     - If you ask about clarifications or questions related to a task in person, add a note about the questions and answers to the GitHub issue so we can track the progress.  
 - A task is closed by the task supervisor when 
 	- The relevant outcomes have been created/reached. 
-	- The task assignee has written a reply to the GitHub issue on how they completed the task and where relevant outcome files are located (e.g., the code file cleaning a relevant bit of data or the note summarizing results). 
-	- The task supervisor agrees that the task has been completed. 
+	- The task assignee has written a reply to the GitHub issue on how they completed the task and where relevant outcome files are located (e.g., the code file cleaning a bit of data or the note summarizing results). 
+	- The task supervisor agrees that the task is completed. 
 
 
 ## Reporting and notes 
@@ -46,7 +46,7 @@ How to get started
 	- Markdown documents can easily be compiled into Word, PDF (via LaTeX), HTML, beamer PDF slides, or other formats using `pandoc` or `quarto`.
 	- Markdown files can be edited using most text editors. We suggest VSCode and Obsidian. 
 	- [Introduction to basic markdown syntax](https://www.markdownguide.org/basic-syntax/) written by the developers behind the original markdown language (it comes in many flavors).
-- We keep personal running notes. These generally contain drafts of information and notes on how we tackle tasks. The documents should typically be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
+- We keep personal running notes documents. These typically contain thoughts and drafts for notes and tasks. The document will typically be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
 
 
 ## References 
@@ -54,6 +54,9 @@ How to get started
 - We use Zotero to maintain shared libraries with project references.  
   - A supervisor will add you to the relevant project(s) on Zotero.
 - We use the `betterbiblatex` extension for Zotero to export `.bib` files to projects or to Overleaf. 
+- When adding a new reference to a Zotero project collection, pin the bibtex key. 
+  - Right-click the reference and select `better bibtex` -> `pin citekey`.
+  - Remember to set up the `better bibtex` extension to use the correct citekey structure. See `Software / Required / Zotero`. 
 
 
 ## Writing papers 
@@ -65,12 +68,12 @@ How to get started
 
 # Version Control 
 
-- We use the [Git version control system](https://github.com/gslab-econ/lab-manual/wiki/Code) to track changes to our notes and code. Git allows you to add, delete, or modify files, mark them as changed (committing), and finally add them to the project (pushing to remote repository). All changes to files will then appear in the project Git history.
+- We use the [Git version control system](https://github.com/gslab-econ/lab-manual/wiki/Code) to track changes to our notes and code. Git allows you to add, delete, or modify files, mark them as changed (committing), and finally add them to the project (pushing to the remote repository). All changes to files will then appear in the project Git history.
 - We use GitHub to host our remote repositories for local, _non-sensitive_ project files. 
     - You can keep the local non-sensitive project files where you prefer. 
     - You will pull and push changes to this remote directory to update general project files.  
     - A supervisor will add you to the relevant project(s) on GitHub.
-- We use a local Git repository for content secure servers.
+- We use a local Git repository for content stored on secure servers.
 - Here, we all work from the same directory containing all relevant files simultaneously. 
 - A basic workflow for using Git is to Pull the latest version of project files from the remote repository. 
     1. Make changes to the files you are working on. 
@@ -366,6 +369,8 @@ all: $(targets)
 		- Installation via Scoop on Windows machines: `scoop install zotero`
     - Install relevant extensions 
        - [better bibtex](https://retorque.re/zotero-better-bibtex/)
+         - Install using the guide at the link. 
+         - Set bbt's citation key formula to `authEtAl + year + shorttitle(3,3)` by going to `preferences --> Better BibTex --> Open Better BibTex Preferences --> Citation Key`, and copy the formula in. 
 
 
 ## Suggestions 
