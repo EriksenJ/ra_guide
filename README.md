@@ -353,6 +353,9 @@ all: $(targets)
 		- [Installation guide for R and RStudio] by Posit (the developers behind RStudio).
 		- [Installation guide for rtools](https://cran.r-project.org/bin/windows/Rtools/) via CRAN. 
 		- Installation via Scoop on Windows machines: `Scoop bucket add r-bucket https://github.com/cderv/r-bucket.git; scoop install r; scoop install rstudio; scoop install rtools`
+    - Guides to get started using R
+        - [4h R crash course](https://github.com/hhsievertsen/Advanced_R/) by Hans H. Sievertsen. With Economics related examples 
+        - [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund.
 - Tinytex 
   - [Tinytex](https://yihui.org/tinytex/) is a lightweight LaTeX distribution that allows you to compile LaTeX documents to PDF.
   - Installation options: 
@@ -373,6 +376,8 @@ all: $(targets)
 	- Installation options:
 		- [Guide](https://www.zotero.org/download/) from the developers. 
 		- Installation via Scoop on Windows machines: `scoop install zotero`
+    - Remember to install connectors: 
+      - [Installation guide](https://www.zotero.org/download/connectors) from the Zotero developers.
     - Install relevant extensions 
        - [better bibtex](https://retorque.re/zotero-better-bibtex/)
          - Install using the guide at the link. 
