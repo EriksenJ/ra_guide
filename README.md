@@ -5,7 +5,7 @@ This page describes the general RA guidelines we employ for our projects. The pu
 
 - _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF) 
 	- The document contains a general introduction to reproducibility challenges that many social science researchers have faced and how the two authors have tried to solve them in their lab. Emphasizes coding conventions, directories, and version control.  
-- _Lab Manual_. Gentzkow and Shapiro. Updated over time. [Link]
+- _Lab Manual_. Gentzkow and Shapiro. Updated over time. [Link](https://github.com/gslab-econ/lab-manual/wiki)
   - This supplements their (2014) document aimed at their RAs. It includes information on workflows, coding, data handling, and paper and slide production internally in their lab. We mainly follow their approaches to workflow (using GitHub issues to assign and resolve tasks).  
 
 How to get started 
@@ -51,7 +51,6 @@ How to get started
 ## References 
 
 - We use Zotero to maintain shared libraries with project references.  
-  - 
   - A supervisor will add you to the relevant project(s) on Zotero.
 - We use the `betterbiblatex` extension for Zotero to export `.bib` files to projects or to Overleaf. 
 
@@ -328,7 +327,7 @@ all: $(targets)
 	- Installation: 
 		- Follow Jeppe Druedahl's [guide to install VSCode](https://numeconcopenhagen.netlify.app/guides/python-setup/).
 		- Install using Scoop on a Windows machine with `Scoop bucket add extras; Scoop install vscode` (see `Software/Suggestions` on using ). 
-	- You can add functionality by installing extensions. Some favorite extensions that you should install: 
+	- You can add functionality by installing extensions. Some extensions you'll likely want to install: 
 		- Git History
 		- GitHub Copilot (free for academic users) 
 		- LaTeX workshop
@@ -344,7 +343,7 @@ all: $(targets)
 - R, RStudio, rtools
 	- [R](https://www.r-project.org/) is an open-source statistical programming language that has gotten a lot of traction in the Econometrics community. Most new developments in Econometrics are likely to arrive to R at the same time or prior to, e.g., Stata. 
 	- [Rstudio](https://posit.co/products/open-source/rstudio/) is an editor specialized for R coding. We typically use RStudio whenever we edit R code.  
-	- [rtools](https://cran.r-project.org/bin/windows/Rtools/) is a set of software tools that R will need to compile some packages, including the `arrow` package we use for parquet format IO. 
+	- [rtools](https://cran.r-project.org/bin/windows/Rtools/) is a set of software tools R will need to compile some packages, including the `arrow` package we use for parquet format IO. 
 	- Installation: 
 		- [Installation guide for R and RStudio] by Posit (the developers behind RStudio).
 		- [Installation guide for rtools](https://cran.r-project.org/bin/windows/Rtools/) via CRAN. 
