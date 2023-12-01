@@ -325,7 +325,7 @@ all: $(targets)
 - VSCode 
 	- [VSCode](https://code.visualstudio.com/) is a general text editor you can use to edit markdown, Python, R, LaTeX, and many other file types. 
 	- It has excellent Git version control features included 
-	- Installation: 
+	- Installation options: 
 		- Follow Jeppe Druedahl's [guide to install VSCode](https://numeconcopenhagen.netlify.app/guides/python-setup/).
 		- Install using Scoop on a Windows machine with `Scoop bucket add extras; Scoop install vscode` (see `Software/Suggestions` on using ). 
 	- You can add functionality by installing extensions. Some extensions you'll likely want to install: 
@@ -336,7 +336,7 @@ all: $(targets)
 		- Python
 		- Quarto 
 		- R (consider using this together with `radian`)
-		- Stata Enhanced  
+		- Stata Enhanced
 		- vscode-pandoc 
 	- Guides: 
 		- [Markdown and Visual Studio Code](https://code.visualstudio.com/docs/languages/markdown) 
@@ -345,23 +345,23 @@ all: $(targets)
 	- [R](https://www.r-project.org/) is an open-source statistical programming language that has gotten a lot of traction in the Econometrics community. Most new developments in Econometrics are likely to arrive to R at the same time or prior to, e.g., Stata. 
 	- [Rstudio](https://posit.co/products/open-source/rstudio/) is an editor specialized for R coding. We typically use RStudio whenever we edit R code.  
 	- [rtools](https://cran.r-project.org/bin/windows/Rtools/) is a set of software tools R will need to compile some packages, including the `arrow` package we use for parquet format IO. 
-	- Installation: 
+	- Installation options: 
 		- [Installation guide for R and RStudio] by Posit (the developers behind RStudio).
 		- [Installation guide for rtools](https://cran.r-project.org/bin/windows/Rtools/) via CRAN. 
 		- Installation via Scoop on Windows machines: `Scoop bucket add r-bucket https://github.com/cderv/r-bucket.git; scoop install r; scoop install rstudio; scoop install rtools`
 - Pandoc 
 	- [Pandoc](https://pandoc.org/index.html) is an open-source command line tool that can be used to convert between many different text formats. We will typically use it to convert between markdown and PDF/word documents. 
-	- Installation: 
+	- Installation options: 
 		-  [Guide](https://www.google.com/search?client=firefox-b-d&q=pandoc+) from the developers. Installation via Scoopon Windows machines: `scoop install pandoc`
 - Quarto 
 	- [Quarto](https://quarto.org/) is a piece of software developed by Posit that allows you to write quarto documents containing both markdown text and integrated R, Python, or some other relevant code. The documents can be edited in RStudio or VSCode. Quarto documents are beneficial when some code requires extensive documentation.    
-	- Installation: 
+	- Installation options: 
 		-  [Guide](https://quarto.org/docs/get-started/) from the developers. 
 		- Installation via Scoop on Windows machines: `scoop install quarto`
 - Zotero
 	- [Zotero](https://www.zotero.org/) is an open-source reference manager. 
 	- Allows easy export of bibtex reference libraries that can cited in markdown and latex documents.   
-	- Installation 
+	- Installation options:
 		- [Guide](https://www.zotero.org/download/) from the developers. 
 		- Installation via Scoop on Windows machines: `scoop install zotero`
     - Install relevant extensions 
@@ -371,7 +371,7 @@ all: $(targets)
 ## Suggestions 
 
 - Scoop
-	- A Powershell tool for Windows that helps you install and keep software updated. 
+	- A Powershell tool for Windows that helps you install and update software updated. 
 	- Working on university-provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. Scoop does this. 
 	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) the latest versions of programs. 
 	- Installing a program with `scoop` is as simple as `scoop install program`. 
