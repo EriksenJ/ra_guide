@@ -101,7 +101,6 @@ How to get started
   - We follow the internal UCPH ECON guidelines on working with sensitive data, including what information can be downloaded from the secure server. 
 
 
-
 ## Directories  
 
 - Our projects are typically distributed locally and on a secure server.  The local project might contain notes, literature reviews, code that doesn't need to run on a secure server, and paper drafts. The secure server project location will exist when the project requires restricted access data (e.g., from Statistics Denmark). 
