@@ -21,8 +21,8 @@ How to get started
 
 ## Tasks 
 
-- We generally follow the workflow [approach](https://github.com/gslab-econ/lab-manual/wiki/Workflow) from Gentzkow and Shapiro. 
-- Tasks will be specified on GitHub under the relevant project as `issues`. We do this to keep track of open tasks and output from tasks. You can familiarize yourself with GitHub issues [here](https://github.com/features/issues). 
+- We follow Gentzkow and Shapiro's workflow [approach](https://github.com/gslab-econ/lab-manual/wiki/Workflow). 
+- Tasks will be specified on GitHub under the relevant project as `issues`. We do this to keep track of open tasks, task notes and questions, and outputs. You can familiarize yourself with GitHub issues [here](https://github.com/features/issues). 
   - A supervisor will add you to the relevant project(s) on GitHub.
 - Each task will contain 
 	- A description. 
