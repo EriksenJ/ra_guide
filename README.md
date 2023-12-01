@@ -152,9 +152,9 @@ paper/
 ## Data formats  
 
 - When possible, store data in `.parquet` format. 
-- We often work with large administrative data files that can take up many GB of space. We prefer the parquet format to reduce our server footprint and increase IO speed. This is a so-called columnar format, meaning that it is possible to load  These are generally highly compressed 
+  - We often work with large administrative data files that can take up many GB of space. We prefer the parquet format to reduce our server footprint and increase IO speed. This is a so-called columnar format, meaning that it is possible to load  These are generally highly compressed 
 - We can import and export `.parquet` files using `R` and `python`. Hadley Wiggins, the developer behind the large parts of the `tidyverse` packages, has written an online book [chapter](https://r4ds.hadley.nz/arrow) on using `parquet` files with R. 
-- In R, we will often use the following syntaxes to import or export a full dataset: 
+- In R, we will often use the following syntaxes to import or export a dataset: 
 
 ```
 library(rio) 
@@ -168,7 +168,7 @@ dat |> export("builddata/out/clean_bef.parquet")
 
 ## General 
 
-- Scripts are named according to what they do. 
+- Name scripts by what they do. 
 	- _Example_: Assume we have written some code that cleans the raw `BEF` register data for use in subsequent analyses. The file (sh)could be named `clean_bef.R`. 
 - Script outputs must contain the name of the producing script and be informative about the content. 
 	- _Example_: Assume the file `descriptives_main_sample.R` outputs two summary tables in LaTeX format. One is a balance table with means and differences in means between treatment and control groups, and one contains general summary statistics for the full sample. These (sh)could be named `descriptives_main_sample_balance.tex` and `descriptives_main_sample_summary.tex`.
@@ -180,25 +180,26 @@ dat |> export("builddata/out/clean_bef.parquet")
 
 - We follow [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml) 
 - Exceptions to style guide: 
-	- Do not use dots; separate using underscores, and keep lowercase. Example: `.CalcMeans()` should be `calc_mean()`.  
+	- Do not use dots, separate using underscores, and keep lowercase. Example: `.CalcMeans()` should be `calc_mean()`.  
 - Use the `rio` [package](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) for data import/export. 
     - It supports many file types and generally uses the most efficient IO tool for importing/exporting the file format.
-- Use the `data.table` [package](https://stata2r.github.io/data_table/) for data wrangling. 
+- Use the `data.table` [package](https://stata2r.github.io/data_table/) for data wrangling when possible. 
 	- [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) from the authors of the package. 
 	- [Introduction for Stata users](https://stata2r.github.io/data_table/)
 	- [data.table chapter](https://bookdown.org/ronsarafian/IntrotoDS/datatable.html) in Introduction to Data Science. 
-- Use  the `fixest` [package](https://lrberge.github.io/fixest/) by Laurent Berge for estimating most types of statistical models, particularly linear and IV models with fixed effects
+- Use the `fixest` [package](https://lrberge.github.io/fixest/) by Laurent Berge for estimating most types of statistical models, particularly linear and IV models with fixed effects, when possible.
 	- It provides estimation tools typically much faster than other options in R and Stata.
 	- Linear, fixed effects, and 2SLS models can be estimated via `feols()`.  
 	- [Documentation](https://lrberge.github.io/fixest/). 
 - We typically use the `modelsummary` [package](https://modelsummary.com) for summarizing regression results and creating summary statistics tables outputted to latex or markdown format. 
 	- An introduction is available [here](https://modelsummary.com). 
+	- When adding footnotes to `modelsummary()` tables, use the `footnote()` function from the `kableExtra` package with the options `escape = F` and `threeparttable = T`.
 
 
 # Automation
 
-- We automate everything that can be automated. This implies writing scripts to do all data cleaning and analysis.  
-- We use `make` to run all project code. 
+- We automate everything that can be automated. This implies writing scripts to do all data cleaning, analysis, and table formatting, and using build tools to run these scripts in the correct order.
+- We use the build tool `make` to run all project code. 
 	- Generally, we want to be able to delete all files in output folders, type `make all` on the command line, and have all output files reappear just as they were before. 
 
 
