@@ -1,7 +1,7 @@
 
 # Introduction 
 
-This page describes the general RA guidelines we employ for our projects. The purpose of the guidelines is to make it easier to focus on _getting_ work done rather than on _how_ to do it. The guidelines draw heavily on 
+This page describes the general RA guidelines we employ for our projects. The purpose of the guidelines is to make it easier to focus on doing replicable and properly documented work. The guidelines draw heavily on 
 
 - _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF) 
 	- The document contains a general introduction to reproducibility challenges that many social science researchers have faced and how the two authors have tried to solve them in their lab. Emphasizes coding conventions, directories, and version control.  
@@ -14,6 +14,7 @@ How to get started
 - Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF)
 - Set up git on your computer and a GitHub account as described under `Version Control`. 
 - Install the necessary software on your local computer. Find the list and installation guides under `Software/Required`. 
+- Ask your supervisor to add you to the relevant projects on GitHub and Zotero.
 
 
 # Workflow 
