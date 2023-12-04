@@ -32,7 +32,7 @@ How to get started:
 - When working on a task 
 	- Keep documentation of your work. We suggest having a `running_notes_(your initials).md` document where you store your thoughts. A good practice is to add headlines with dates so that it becomes easier to go back to find thoughts related to a task you previously worked on.  
 - Asking questions 
-    - We encourage you to work independently but ask questions when you realize you are stuck. We all tend to get stuck very often when we start working with administrative data, so do come around and ask if something comes up! 
+    - We encourage you to work independently but ask questions when you realize you are stuck or something seems unclear. We all get stuck. And it happens particularly often when we start working with the administrative data, so do come around and ask. Our experience is that RAs who ask questions early on are more productive in the long run.
     - If you ask about clarifications or questions related to a task in person, add a note about the questions and answers to the GitHub issue so we can track the progress.  
 - A task is closed by the task supervisor when 
 	- The relevant outcomes have been created/reached. 
@@ -70,12 +70,11 @@ How to get started:
 # Version Control 
 
 - We use the [Git version control system](https://github.com/gslab-econ/lab-manual/wiki/Code) to track changes to our notes and code. Git allows you to add, delete, or modify files, mark them as changed (committing), and finally add them to the project (pushing to the remote repository). All changes to files will then appear in the project Git history.
-- We use GitHub to host our remote repositories for local, _non-sensitive_ project files. 
+- We use GitHub to host our remote repositories for  _non-sensitive_ project files. 
     - You can keep the local non-sensitive project files where you prefer. 
     - You will pull and push changes to this remote directory to update general project files.  
     - A supervisor will add you to the relevant project(s) on GitHub.
-- We use a local Git repository for content stored on secure servers.
-- Here, we all work from the same directory containing all relevant files simultaneously. 
+- We use a local Git repository for content stored on secure servers where we cannot access Github. 
 - A basic workflow for using Git is to Pull the latest version of project files from the remote repository. 
     1. Pull latest updates from the remote repository.
     2. Make changes to the files you are working on. 
@@ -158,9 +157,11 @@ paper/
 ## Data formats  
 
 - When possible, store data in `.parquet` format. 
-  - We often work with large administrative data files that can take up many GB of space. We prefer the parquet format to reduce our server footprint and increase IO speed. This is a so-called columnar format, meaning that it is possible to load  These are generally highly compressed 
-- We can import and export `.parquet` files using `R` and `python`. Hadley Wiggins, the developer behind the large parts of the `tidyverse` packages, has written an online book [chapter](https://r4ds.hadley.nz/arrow) on using `parquet` files with R. 
-- In R, we will often use the following syntaxes to import or export a dataset: 
+  - We often work with large administrative data files that can take up many GB of space. We prefer the parquet format to reduce our server footprint and increase IO speed.
+- We can import and export `.parquet` files using `R` and `python`. 
+  - [Guide to using `parquet` with R](https://arrow.apache.org/cookbook/r/index.html) by Apache. 
+  - [Guide to using `parquet` with R](https://r4ds.hadley.nz/arrow) by Hadley Wiggins. 
+- In R, we will often use the `rio` package to import/export a dataset: 
 
 ```
 library(rio) 
