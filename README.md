@@ -10,11 +10,14 @@ This page describes the general RA guidelines we employ for our projects. The pu
 
 How to get started:
 
-- Read this document.  
 - Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF)
+- Read this document.  
+	- You do not have to follow links the first time you read the document. They are there for reference. 
 - Set up git on your computer and a GitHub account as described under `Version Control`. 
 - Install the necessary software on your local computer. Find the list and installation guides under `Software/Required`. 
 - Ask your supervisor to add you to the relevant projects on GitHub and Zotero.
+
+After you have finished these steps, we will assign tasks to you via the Github project(s). 
 
 
 # Workflow 
@@ -47,7 +50,9 @@ How to get started:
 	- Searching (and replacing) across multiple markdown files for content using typical text editors is easy. 
 	- Markdown files can be edited using most text editors. We suggest VSCode and Obsidian. 
 	- [Introduction to basic markdown syntax](https://www.markdownguide.org/basic-syntax/) written by the developers behind the original markdown language (it comes in many flavors).
-- We keep personal running notes documents. These typically contain thoughts and drafts for notes and tasks. The document will typically be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
+- We keep personal running notes documents. 
+	- These typically contain thoughts and drafts for notes and tasks. 
+	- The document will typically be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
 
 
 ## References 
