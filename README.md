@@ -77,10 +77,11 @@ How to get started:
 - We use a local Git repository for content stored on secure servers.
 - Here, we all work from the same directory containing all relevant files simultaneously. 
 - A basic workflow for using Git is to Pull the latest version of project files from the remote repository. 
-    1. Make changes to the files you are working on. 
-    2. Commit your changes. 
-    3. Pull the latest updates from the remote repository and resolve any conflicts. 
-    4. Push your changes to the remote repository. 
+    1. Pull latest updates from the remote repository.
+    2. Make changes to the files you are working on. 
+    3. Commit your changes. 
+    4. Pull the latest updates from the remote repository and resolve any conflicts. 
+    5. Push your changes to the remote repository. 
 - Guides 
 	- Basic (takes about 20 minutes total and well worth it): [Git Handbook](https://guides.github.com/introduction/git-handbook/), [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/), [Mastering Issues](https://guides.github.com/features/issues/), [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 	- Detailed: [Pro Git](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control), [Version Control with Git](https://www.amazon.com/Version-Control-Git-collaborative-development-ebook/dp/B008Y4OR3A/ref=mt_kindle?_encoding=UTF8&me=&qid=1531951134), Chapters 4-9
