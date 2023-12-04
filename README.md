@@ -8,7 +8,7 @@ This page describes the general RA guidelines we employ for our projects. The pu
 - _Lab Manual_. Gentzkow and Shapiro. [Link](https://github.com/gslab-econ/lab-manual/wiki)
   - This supplements their (2014) document. It includes information on workflows, coding, data handling, and paper and slide production. We generally follow their workflow approaches (e.g., using GitHub issues to assign and resolve tasks).  
 
-How to get started 
+How to get started:
 
 - Read this document.  
 - Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF)
@@ -92,16 +92,17 @@ How to get started
 
 ## Project storage 
 
-- We generally store non-sensitive project files in private GitHub project repository. 
-  - This ensures that all project participants have access to the relevant files.
-  - It also makes it easy to keep track of changes to files and revert to previous versions if necessary. We use the `git` version control system to do this.
+- We generally store non-sensitive project files in private GitHub repositories (one per project).
+Using Github repositories ensures all project participants can access the relevant files.
+  - It also makes it easy to track file changes and revert to previous versions if necessary. 
+  - We use the `git` version control system to pull and push files to the Github repositories.
   - Supervisors will add you to the relevant project(s) on GitHub.
-- Sensitive project files are stored on a secure KU server. 
+- We store sensitive files on a secure KU server. 
   - Supervisors can give you access to relevant folders. 
-- GDPR sensitive administrative data that we access via Statistics Denmark is stored on a secure Statistics Denmark server.
-  - Documentation  
-  - Getting access requires the written permission from the project supervisor and the head of department. 
-  - Before getting access, you are required read the internal UCPH ECON and Statistics Denmark guidelines on working with sensitive data.
+- GDPR-sensitive microdata is stored on a secure server hosted at Statistics Denmark. This includes administrative data from Statistics Denmark and the Ministry of Education we use in our projects.
+  - Documentation on Statistics Denmark's researcher data access and storage is available [here](https://www.dst.dk/en/TilSalg/Forskningsservice).
+  - If you work with sensitive microdata, your project supervisor will help you set up access.
+  - Before getting access, you are required to read and sign the internal UCPH ECON and Statistics Denmark guidelines on working with sensitive data.
   - We follow the internal UCPH ECON guidelines on working with sensitive data, including what information can be downloaded from the secure server. 
 
 
@@ -167,6 +168,13 @@ dat |> export("builddata/out/clean_bef.parquet")
 ```
 
 
+## R projects 
+
+- We use R projects to help RStudio determine where to run our R scripts. 
+  - The R-project file must be located at the root of the project directory. 
+  - Read about working with scripts and R projects [here](https://r4ds.had.co.nz/workflow-scripts.html).
+
+
 # Code Conventions  
 
 
@@ -198,6 +206,24 @@ dat |> export("builddata/out/clean_bef.parquet")
 - We typically use the `modelsummary` [package](https://modelsummary.com) for summarizing regression results and creating summary statistics tables outputted to latex or markdown format. 
 	- An introduction is available [here](https://modelsummary.com). 
 	- When adding footnotes to `modelsummary()` tables, use the `footnote()` function from the `kableExtra` package with the options `escape = F` and `threeparttable = T`.
+- We use the [`here` package](https://here.r-lib.org/) when specifying paths to ensure all paths are read relative to the project folder. 
+
+
+### Guides to get started with R
+
+- How to get started:
+  - Read parts 1 and 2 of Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
+    - The introduction focuses on the basics of R and the `tidyverse` packages.  
+  - Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/). 
+    - The document describes basics like viewing data, subsetting, creating new variables, and using the `.SD` capability.
+  - Go through the `r_introduction.qmd` quarto document that you can find on this Github page. 
+- Other great guides
+  - [R for Data Science (2e)](https://r4ds.hadley.nz/) is an online and free goto reference for getting started with simple and more advanced R, including data IO with [arrow](https://r4ds.hadley.nz/arrow), writing [functions](https://r4ds.hadley.nz/functions), and using [`quarto`](https://r4ds.hadley.nz/quarto) to communicate results. 
+    - Each chapter comes with great exercises. 
+    - The main author, Hadley Wickham, has been a driving force in developing R packages, including a majority of the `tidyverse` package since the 2000s. 
+  - Hans Henrik Sievertsen's [Applied Econometrics with R](https://hhsievertsen.github.io/applied_econ_with_r/) introduces using R for applied econometrics, including data cleaning, visualization, descriptive statistics, and regression analysis (using `feols` and `modelsummary`). This guide is great for when you've gotten the hang of basic R. 
+  - Hans Henrik Sievertsen's [Interactive introduction to R](https://hhsievertsen.shinyapps.io/r_introduction//#section-welcome). It introduces basic data handling (loading data, modifying and merging datasets) and plotting. 
+- Remember, ChatGPT often gives great solutions to coding problems! 
 
 
 # Automation
