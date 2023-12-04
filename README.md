@@ -13,8 +13,8 @@ How to get started:
 - Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF)
 - Read this document.  
 	- You do not have to follow links the first time you read the document. They are there for reference. 
+- Install the necessary software on your local computer as described under `Software/Required`. 
 - Set up git on your computer and a GitHub account as described under `Version Control`. 
-- Install the necessary software on your local computer. Find the list and installation guides under `Software/Required`. 
 - Ask your supervisor to add you to the relevant projects on GitHub and Zotero.
 
 After you have finished these steps, we will assign tasks to you via the Github project(s). 
