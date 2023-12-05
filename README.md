@@ -84,12 +84,13 @@ After you have finished these steps, we will assign tasks to you via the Github 
     1. Pull latest updates from the remote repository.
     2. Make changes to the files you are working on. 
     3. Commit your changes. 
-	    1. Add a reference to the task you are working on in the commit message if relevant. You do this by adding adding a reference to the task-number, e.g.,  `Task24 - `, in front of the commit message.  
+	    1. Add a reference to the task you are working on in the commit message if relevant. You do this by adding adding a reference to the task-number, e.g.,  ` #123 Add peer-group-control robustness regression - (text)`, in front of the commit message.  (Read Chris Beams' article on good commit messages). 
     4. Pull the latest updates from the remote repository and resolve any conflicts. 
     5. Push your changes to the remote repository. 
 - Guides 
 	- Basic (takes about 20 minutes total and well worth it): [Git Handbook](https://guides.github.com/introduction/git-handbook/), [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/), [Mastering Issues](https://guides.github.com/features/issues/), [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 	- Detailed: [Pro Git](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control), [Version Control with Git](https://www.amazon.com/Version-Control-Git-collaborative-development-ebook/dp/B008Y4OR3A/ref=mt_kindle?_encoding=UTF8&me=&qid=1531951134), Chapters 4-9
+	- [Writing good Git commit messages](https://cbea.ms/git-commit/) by Chris Beams.  
 - Setup: (based on https://github.com/gslab-econ/lab-manual/wiki/Setup) 
 	- [Create a GitHub account and install the Git desktop/command line clients](https://help.github.com/articles/set-up-git/).
 
