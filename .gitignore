@@ -1,0 +1,20 @@
+## git should track 
+##      Text files, such as markdown, quarto, and tex files. 
+##      Code files, such as R, Rmd, quarto, and python files.
+
+
+## ignore everything
+*.* 
+
+## except for these file types 
+!*.Rmd
+!*.md
+!*.qmd
+!*.R
+!*.py
+!*.do
+!*.sh
+!*.txt
+!*.ps1
+!.gitignore
+!*.pdf
