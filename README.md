@@ -84,6 +84,7 @@ After you have finished these steps, we will assign tasks to you via the Github 
     1. Pull latest updates from the remote repository.
     2. Make changes to the files you are working on. 
     3. Commit your changes. 
+	    1. Add a reference to the task you are working on in the commit message if relevant. You do this by adding adding a reference to the task-number, e.g.,  `Task24 - `, in front of the commit message.  
     4. Pull the latest updates from the remote repository and resolve any conflicts. 
     5. Push your changes to the remote repository. 
 - Guides 
@@ -409,12 +410,12 @@ all: $(targets)
 	- Installation options:
 		- [Guide](https://www.zotero.org/download/) from the developers. 
 		- Installation via Scoop on Windows machines: `scoop install zotero`
-    - Remember to install connectors: 
-      - [Installation guide](https://www.zotero.org/download/connectors) from the Zotero developers.
-    - Install relevant extensions 
-       - [better bibtex](https://retorque.re/zotero-better-bibtex/)
-         - Install using the guide at the link. 
-         - Set bbt's citation key formula to `authEtAl + year + shorttitle(3,3)` by going to `preferences --> Better BibTex --> Open Better BibTex Preferences --> Citation Key`, and copy the formula in. 
+	- Install connectors: 
+		- [Installation guide](https://www.zotero.org/download/connectors) from the Zotero developers.
+	- Install relevant extensions 
+		- [better bibtex](https://retorque.re/zotero-better-bibtex/)
+			- Install using the guide at the link. 
+			- Set bbt's citation key formula to `authEtAl + year + shorttitle(3,3)` by going to `preferences --> Better BibTex --> Open Better BibTex Preferences --> Citation Key`, and copy the formula in. 
 
 
 ## Suggestions 
