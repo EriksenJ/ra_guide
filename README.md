@@ -79,7 +79,7 @@ After you have finished these steps, we will assign tasks to you via the Github 
     - You can keep the local non-sensitive project files where you prefer. 
     - You will pull and push changes to this remote directory to update general project files.  
     - A supervisor will add you to the relevant project(s) on GitHub.
-- We use a local Git repository for content stored on secure servers where we cannot access Github. 
+- We use a local Git repository for content stored on secure servers. 
 - A basic workflow for using Git is to Pull the latest version of project files from the remote repository. 
     1. Pull latest updates from the remote repository.
     2. Make changes to the files you are working on. 
