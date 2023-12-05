@@ -6,11 +6,11 @@
 # irm get.scoop.sh | iex
 
 # add scoop bucket "extras"
+scoop install git
 scoop bucket add extras
 Scoop bucket add r-bucket https://github.com/cderv/r-bucket.git
 
 # install required software 
-scoop install git
 scoop install vscode
 scoop install r 
 scoop install rstudio
