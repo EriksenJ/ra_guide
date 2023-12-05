@@ -355,6 +355,8 @@ all: $(targets)
 
 ## Required 
 
+If you work on a windows machine, do consider installing the software using `scoop`. We have create a powershell executable that can install all required software in one go for you. To run it, first [install scoop](https://scoop.sh/); download the file `scoop_install_required_software.ps1` from the `_setup` folder in this repository; right-click it and choose "run with powershell". The file then installs all the software. Remember you still have to install extension within each piece of software manually.  
+
 - Git 
 	- [Git](https://git-scm.com/) is a command-line version control software. See more under `Version Control`
 	- Installation 
