@@ -356,9 +356,9 @@ all: $(targets)
 
 ## Required 
 
-If you work on a windows machine, do consider installing the software using `scoop`. We have created a PowerShell executable file that can install all required software in one go for you. To run it: 
+If you work on a windows machine, consider installing the software using `scoop`. We have created a PowerShell executable file that installs all required software in one go for you. To run it: 
 
-1. first [install scoop](https://scoop.sh/)
+1. First [install scoop](https://scoop.sh/)
 2. Download the file `scoop_install_required_software.ps1` from the `_setup` folder in this repository.
 3. Right-click it and choose "run with powershell". 
 
@@ -379,7 +379,7 @@ List of required software
 		- Install using Scoop on a Windows machine with `scoop bucket add extras; scoop install vscode` (see `Software/Suggestions` on using ). 
 	- You can add functionality by installing extensions. Some extensions you'll likely want to install: 
 		- Git History
-		- GitHub Copilot (free for academic users) 
+		- GitHub Copilot (free for academic users - read more [here](https://docs.github.com/en/education/explore-the-benefits-of-teaching-and-learning-with-github-education/github-global-campus-for-students/apply-to-github-global-campus-as-a-student)) 
 		- LaTeX workshop
 		- Markdown All in One 
 		- Python
