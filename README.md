@@ -167,7 +167,7 @@ paper/
   - We often work with large administrative data files that can take up many GB of space. We prefer the parquet format to reduce our server footprint and increase IO speed.
 - We can import and export `.parquet` files using `R` and `python`. 
   - [Guide to using `parquet` with R](https://arrow.apache.org/cookbook/r/index.html) by Apache. 
-  - [Guide to using `parquet` with R](https://r4ds.hadley.nz/arrow) by Hadley Wiggins. 
+  - [Guide to using `parquet` with R](https://r4ds.hadley.nz/arrow) by Hadley Wickham. 
 - In R, we will often use the `rio` package to import/export a dataset: 
 
 ```
