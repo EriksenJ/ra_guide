@@ -190,9 +190,9 @@ dat |> export("builddata/out/clean_bef.parquet")
 ## General 
 
 - Name scripts by what they do. 
-	- _Example_: Assume we have written some code that cleans the raw `BEF` register data for use in subsequent analyses. The file (sh)could be named `clean_bef.R`. 
+	- _Example_: We have written code that cleans the raw `BEF` register data for use in subsequent analyses. The file (sh)could be named `clean_bef.R`. 
 - Script outputs must contain the name of the producing script and be informative about the content. 
-	- _Example_: Assume the file `descriptives_main_sample.R` outputs two summary tables in LaTeX format. One is a balance table with means and differences in means between treatment and control groups, and one contains general summary statistics for the full sample. These (sh)could be named `descriptives_main_sample_balance.tex` and `descriptives_main_sample_summary.tex`.
+	- _Example_: Assume the file `describe_main_sample.R` outputs two summary tables in LaTeX format. One is a balance table with means and differences in means between treatment and control groups, and one contains general summary statistics for the full sample. These (sh)could be named `describe_main_sample_balance.tex` and `describe_main_sample_summary.tex`.
 - No line of code should be more than 100 characters long. All languages we work in allow you to break a logical line across multiple lines on the page (e.g., using `///` in Stata or `...` in Matlab). You may want your editor to show a “margin” of 100 characters.
 - Functions should not typically be longer than 200 lines.
 
@@ -208,6 +208,7 @@ dat |> export("builddata/out/clean_bef.parquet")
 	- [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) from the authors of the package. 
 	- [Introduction for Stata users](https://stata2r.github.io/data_table/)
 	- [data.table chapter](https://bookdown.org/ronsarafian/IntrotoDS/datatable.html) in Introduction to Data Science. 
+	- [data.table cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/datatable.pdf). 
 - Use the `fixest` [package](https://lrberge.github.io/fixest/) by Laurent Berge for estimating most types of statistical models, particularly linear and IV models with fixed effects, when possible.
 	- It provides estimation tools typically much faster than other options in R and Stata.
 	- Linear, fixed effects, and 2SLS models can be estimated via `feols()`.  
