@@ -16,6 +16,11 @@ How to get started:
 - Install the necessary software on your local computer as described under `Software/Required`. 
 - Set up git on your computer and a GitHub account as described under `Version Control`. 
 - Ask your supervisor to add you to the relevant projects on GitHub and Zotero.
+- Get to know R
+  - Read Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
+  - Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) and try out the commands in a document of your own. 
+    - The document describes basics like viewing data, subsetting, creating new variables, and using the `.SD` capability.
+  - Go through the `r_introduction.qmd` quarto document that you can find on this Github page. 
 
 After you have finished these steps, we will assign tasks to you via the Github project(s). 
 
@@ -222,8 +227,7 @@ dat |> export("builddata/out/clean_bef.parquet")
 ### Guides to get started with R
 
 - How to get started:
-  - Read parts 1 and 2 of Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
-    - The introduction focuses on the basics of R and the `tidyverse` packages.  
+  - Read parts Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
   - Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/). 
     - The document describes basics like viewing data, subsetting, creating new variables, and using the `.SD` capability.
   - Go through the `r_introduction.qmd` quarto document that you can find on this Github page. 
