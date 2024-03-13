@@ -18,7 +18,7 @@ How to get started:
 - Ask your supervisor to add you to the relevant projects on GitHub and Zotero.
 - Get to know R
   - Read Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
-  - Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) and try out the commands in a document of your own. 
+  - Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) and try out the commands in your own R script. 
     - The document describes basics like viewing data, subsetting, creating new variables, and using the `.SD` capability.
   - Go through the `r_introduction.qmd` quarto document that you can find on this Github page. 
 
