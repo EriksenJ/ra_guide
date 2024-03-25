@@ -10,7 +10,7 @@ This page describes the general RA guidelines we employ for our projects. The pu
 
 How to get started:
 
-- Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF)
+- Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
 - Read this document.  
 	- You do not have to follow links the first time you read the document. They are there for reference. 
 - Install the necessary software on your local computer as described under `Software/Required`. 
