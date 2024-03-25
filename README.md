@@ -8,7 +8,7 @@ This page describes the general RA guidelines we employ for our projects. The pu
 - _Lab Manual_. Gentzkow and Shapiro. [Link](https://github.com/gslab-econ/lab-manual/wiki)
   - This supplements their (2014) document. It includes information on workflows, coding, data handling, and paper and slide production. We generally follow their workflow approaches (e.g., using GitHub issues to assign and resolve tasks).  
 
-How to get started:
+How to get started: (Talk with supervisor about which tasks makes sense for you)
 
 - Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
 - Read this document.  
