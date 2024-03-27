@@ -3,14 +3,14 @@
 
 This page describes the general RA guidelines we employ for our projects. The purpose of the guidelines is to make it easier to focus on doing replicable and properly documented work. The guidelines draw heavily on 
 
-- _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF) 
+- _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
 	- The document contains a general introduction to reproducibility challenges that many social science researchers have faced and how the two authors have tried to solve them in their lab. Emphasizes coding conventions, directories, and version control.  
 - _Lab Manual_. Gentzkow and Shapiro. [Link](https://github.com/gslab-econ/lab-manual/wiki)
   - This supplements their (2014) document. It includes information on workflows, coding, data handling, and paper and slide production. We generally follow their workflow approaches (e.g., using GitHub issues to assign and resolve tasks).  
 
-How to get started:
+How to get started: (Talk with supervisor about which tasks makes sense for you)
 
-- Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.PDF)
+- Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
 - Read this document.  
 	- You do not have to follow links the first time you read the document. They are there for reference. 
 - Install the necessary software on your local computer as described under `Software/Required`. 
@@ -18,7 +18,7 @@ How to get started:
 - Ask your supervisor to add you to the relevant projects on GitHub and Zotero.
 - Get to know R
   - Read Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
-  - Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) and try out the commands in a document of your own. 
+  - Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) and try out the commands in your own R script. 
     - The document describes basics like viewing data, subsetting, creating new variables, and using the `.SD` capability.
   - Go through the `r_introduction.qmd` quarto document that you can find on this Github page. 
 
