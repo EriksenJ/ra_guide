@@ -224,7 +224,16 @@ dat |> export("builddata/out/clean_bef.parquet")
 - We use the [`here` package](https://here.r-lib.org/) when specifying paths to ensure all paths are read relative to the project folder. 
 
 
+### Larger than memory datasets 
+
+
+- We sometimes work with datasets that are larger-than-memory, meaning that loading them requires (nearly) all or more than the RAM available on servers. We can avoid loading data into R using the `arrow` and `duckdb` packages. 
+  - [Introduction](https://github.com/thisisnic/awesome-arrow-r) to using `arrow` (with ` duckdb`) in R.
+  - [Introduction](https://jthomasmock.github.io/bigger-data/#37) to using `duckdb` with `dplyr` functions. 
+
+
 ### Guides to get started with R
+
 
 - How to get started:
   - Read parts Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
@@ -242,12 +251,14 @@ dat |> export("builddata/out/clean_bef.parquet")
 
 # Automation
 
+
 - We automate everything that can be automated. This implies writing scripts to do all data cleaning, analysis, and table formatting, and using build tools to run these scripts in the correct order.
 - We use the build tool `make` to run all project code. 
 	- Generally, we want to be able to delete all files in output folders, type `make all` on the command line, and have all output files reappear just as they were before. 
 
 
 ## Build tool - `make` 
+
 
 - Build tools generally help run your project code in the correct order based on a set of rules that specify output targets and inputs, including code files. Some examples of more advanced build tools include `snakemake`, and `cmake`. I have generally found that these modern build tools are unavailable on the secure servers hosted at Statistics Denmark, where a substantial part of my project code resides. 
 - We, therefore, use the slightly more archaic `make`. 
