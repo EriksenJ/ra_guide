@@ -17,10 +17,12 @@ How to get started: (Talk with supervisor about which tasks makes sense for you)
 - Set up git on your computer and a GitHub account as described under `Version Control`. 
 - Ask your supervisor to add you to the relevant projects on GitHub and Zotero.
 - Get to know R
-  - Read Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
-  - Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) and try out the commands in your own R script. 
+  - *Getting started*: Read Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
+  - *`data.table`*: Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) and try out the commands in your own R script. 
     - The document describes basics like viewing data, subsetting, creating new variables, and using the `.SD` capability.
-  - Go through the `r_introduction.qmd` quarto document that you can find on this Github page. 
+  - *`exercises`*: Go through the `r_introduction.qmd` quarto document that you can find on this Github page. 
+  - *duckdb for large parquet files*: Go through Grant McDermott's [introduction to using `duckdb`](https://grantmcdermott.com/duckdb-polars/duckdb-sql.html), a lightweight database system, to work with large parquet files without having to load them into r. 
+    - `duckdb + dplyr` verbs is often substantially faster than loading data into R and using `dplyr` or `data.table` for (1) doing simple data wrangling, and (2) doing straightforward descriptive statistics such as counts, summary statistics, etc. 
 
 After you have finished these steps, we will assign tasks to you via the Github project(s). 
 
@@ -72,7 +74,7 @@ After you have finished these steps, we will assign tasks to you via the Github 
 
 ## Writing papers 
 
-- We use Overleaf to write papers and paper drafts in LaTeX format unless otherwise specified. Overleaf allows us to 
+- We use Overleaf to write papers in LaTeX format unless otherwise specified. Overleaf allows us to 
 	- Work on the paper at the same time
 	- Integrate references from shared Zotero libraries
 
@@ -109,9 +111,9 @@ Using Github repositories ensures all project participants can access the releva
   - It also makes it easy to track file changes and revert to previous versions if necessary. 
   - We use the `git` version control system to pull and push files to the Github repositories.
   - Supervisors will add you to the relevant project(s) on GitHub.
-- We store sensitive files on a secure KU server. 
+- We store sensitive files on a secure UCPH server. 
   - Supervisors can give you access to relevant folders. 
-- GDPR-sensitive microdata is stored on a secure server hosted at Statistics Denmark. This includes administrative data from Statistics Denmark and the Ministry of Education we use in our projects.
+- GDPR-sensitive microdata is typically stored on a secure server hosted at Statistics Denmark. This includes administrative data from Statistics Denmark and the Ministry of Education we use in our projects.
   - Documentation on Statistics Denmark's researcher data access and storage is available [here](https://www.dst.dk/en/TilSalg/Forskningsservice).
   - If you work with sensitive microdata, your project supervisor will help you set up access.
   - Before getting access, you are required to read and sign the internal UCPH ECON and Statistics Denmark guidelines on working with sensitive data.
@@ -147,7 +149,8 @@ presentations/
 paper/
 ```
 
-- We store raw data in a separate folder. Suppose we have more than one raw data set, for example, from Statistics Denmark and the Ministry of Education. We then separate them into subfolders with meaningful names and possibly a date of compilation so we can keep track of versions. 
+- We store raw data in a separate folder. 
+  - Suppose we have more than one raw data set, for example, from Statistics Denmark and the Ministry of Education. We then separate them into subfolders with meaningful names and possibly a date of compilation so we can keep track of versions. 
 
 ```
 buildraw/ 
@@ -169,7 +172,8 @@ paper/
 ## Data formats  
 
 - When possible, store data in `.parquet` format. 
-  - We often work with large administrative data files that can take up many GB of space. We prefer the parquet format to reduce our server footprint and increase IO speed.
+  - `.parquet` files are typically substantially smaller than `.csv` or `.dta` files, so we can reduce our server footprint. 
+  - Reading/writing `.parquet` files in R is typically a lot faster than `.csv` and `.dta`. 
 - We can import and export `.parquet` files using `R` and `python`. 
   - [Guide to using `parquet` with R](https://arrow.apache.org/cookbook/r/index.html) by Apache. 
   - [Guide to using `parquet` with R](https://r4ds.hadley.nz/arrow) by Hadley Wickham. 
@@ -180,7 +184,6 @@ library(rio)
 dat = import("builddata/out/clean_bef.parquet")
 dat |> export("builddata/out/clean_bef.parquet")
 ```
-
 
 ## R projects 
 
@@ -206,7 +209,7 @@ dat |> export("builddata/out/clean_bef.parquet")
 
 - We follow [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml) 
 - Exceptions to style guide: 
-	- Do not use dots, separate using underscores, and keep lowercase. Example: `.CalcMeans()` should be `calc_mean()`.  
+	- Separate using underscores, and keep lowercase. Example: `.CalcMeans()` should be `calc_mean()`.  
 - Use the `rio` [package](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) for data import/export. 
     - It supports many file types and generally uses the most efficient IO tool for importing/exporting the file format.
 - Use the `data.table` [package](https://stata2r.github.io/data_table/) for data wrangling when possible. 
@@ -229,7 +232,47 @@ dat |> export("builddata/out/clean_bef.parquet")
 
 - We sometimes work with datasets that are larger-than-memory, meaning that loading them requires (nearly) all or more than the RAM available on servers. We can avoid loading data into R using the `arrow` and `duckdb` packages. 
   - [Introduction](https://github.com/thisisnic/awesome-arrow-r) to using `arrow` (with ` duckdb`) in R.
-  - [Introduction](https://jthomasmock.github.io/bigger-data/#37) to using `duckdb` with `dplyr` functions. 
+  - [Introduction](https://grantmcdermott.com/duckdb-polars/duckdb-sql.html) to using `duckdb` with `dplyr` functions. 
+
+- Example of interacting with a parquet file using using the `duckdb` package `dplyr` verbs:
+
+```
+# load packages 
+library(duckdk)
+library(tidyverse)
+library(arrow) 
+
+# create and/or connect to existing database file (the name doesn't matter) 
+db = dbConnect(duckdb(), "database.duckdb")
+
+# open a connection to the parquet file and treat it as a duckdb database
+#  select only the three of the variables in the dataset 
+dat_db = open_dataset("path_to_data.parquet") %>% 
+    to_duckdb() %>% 
+    select(id, group = Group, salary)
+
+# find number of groups 
+dat_db %>% count(group) %>% count(n)
+
+# Find average salary by group 
+dat_db %>% summarise(ave_salary = mean(salary, na.rm = T), .by = c(group))
+
+# Plot average salary by group number 
+dat_db %>% 
+    summarise(ave_salary = mean(salary, na.rm = T), .by = c(group)) %>% 
+    ggplot(aes(group, ave_salary)) + 
+    geom_point() 
+
+# Load observations with salaries higher than 1,000,000 DKK into R 
+dat_highsal = dat_db %>% 
+    filter(salary > 1000000) %>% 
+    collect() 
+
+# Make R explain the database query it sends to duckdb when summarising salaries
+dat_db %>% 
+    summarise(ave_salary = mean(salary, na.rm = T), .by = c(group)) %>% 
+    explain() 
+``` 
 
 
 ### Guides to get started with R
@@ -246,7 +289,7 @@ dat |> export("builddata/out/clean_bef.parquet")
     - The main author, Hadley Wickham, has been a driving force in developing R packages, including a majority of the `tidyverse` package since the 2000s. 
   - Hans Henrik Sievertsen's [Applied Econometrics with R](https://hhsievertsen.github.io/applied_econ_with_r/) introduces using R for applied econometrics, including data cleaning, visualization, descriptive statistics, and regression analysis (using `feols` and `modelsummary`). This guide is great for when you've gotten the hang of basic R. 
   - Hans Henrik Sievertsen's [Interactive introduction to R](https://hhsievertsen.shinyapps.io/r_introduction//#section-welcome). It introduces basic data handling (loading data, modifying and merging datasets) and plotting. 
-- Remember, ChatGPT often gives great solutions to coding problems! 
+- ChatGPT often gives great solutions to coding problems! 
 
 
 # Automation
@@ -282,7 +325,7 @@ builddata/out/clean_data.parquet: builddata/code/clean_data.R buildraw/out/rawda
 ```
 
 - Make `make` run your command 
-	1. Navigate a command line tool, such as `cmd` to the project folder where the makefile is located.
+	1. Navigate a command line tool such as `cmd` to the project folder where the makefile is located.
 	2. In the command line, type `make target`, where target is the file you want to build.  E.g., `make builddata/out/clean_data.parquet`. 
 - How `make` runs your command:  
 	- When you tell `make` to create a target, `make` first checks the dependencies for that rule. If a dependency is itself a target from another rule, `make`moves back to this previous rule. This continuous until `make` finds the antecedent dependencies. 
