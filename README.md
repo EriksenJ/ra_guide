@@ -410,6 +410,82 @@ all: $(targets)
 ```
 
 
+### Subfolders 
+
+When projects contain subfolders for distinct tasks, each subfolder should have a makefile. The main project folder makefile should then tell make to enter the subfolder and run the makefile there. We store makefile settings that are common for the project in makefile.env. 
+
+- Assume the following folder structure and note that we have a makefile in each subfolder executable code. 
+
+```
+rawextract/ 
+	dst/
+		dat1.sas7bdat
+		dat2.sas7bdat
+consistency_simulation/
+	code/ 
+		simulate_estimator_consistency.R 
+	log/
+    temp/
+	out/
+		simulate_estimator_consistency_distribution.PDF
+    makefile
+builddata/
+    code/ 
+        clean_dat1.R 
+    log/ 
+    out/
+        clean_dat1.parquet
+    makefile
+makefile
+makefile.env
+```
+
+- Content of the settings makefile.env
+
+```
+R := C:\Users\bxn825\scoop\shims\rscript.exe --quiet $< 1> log/$(basename $(notdir $<)).log 2>&1
+```
+
+- Content of the main makefile 
+
+```
+include makefile.env
+
+.PHONY: all builddata consistency_simulation
+
+all: builddata consistency_simulation 
+
+builddata: 
+    @echo entering builddata folder...
+    $MAKE$ -C builddata 
+
+consistency_simulation: 
+    @echo entering consistency_simulation folder...
+    $MAKE$ -C consistency_simulation 
+```
+
+- Content of the makefile in `builddata` 
+
+```
+include ../makefile.env
+
+# targets 
+TARGETS = 
+
+TARGETS := $(TARGETS) out/clean_dat1.parquet
+out/clean_dat1.parquet: \
+    code/clean_dat1.R \
+    ../rawextract/out/dat1.sas7bdat
+    $(R)
+
+# run all targets 
+
+.PHONY: all
+
+all: $(TARGETS)
+```
+
+
 # Software 
 
 
