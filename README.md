@@ -424,7 +424,7 @@ Things this shows that dplyr-in-duckdb makes awkward:
 	- [Makefiles for R/LaTeX projects](https://robjhyndman.com/hyndsight/makefiles/) — Rob Hyndman.
 	- [Minimal make](https://kbroman.org/minimal_make/) — Karl Broman.
 	- [GNU Make for Reproducible Data Analysis](http://zmjones.com/make/) — Zachary Jones.
-- Installation: pre-installed on macOS/Linux. On Windows, install via `rtools`, Cygwin, or GNUWin32.
+- Installation: pre-installed on macOS/Linux. On Windows, install via Scoop with `scoop install make` (see [Software / Required](#required)).
 
 ### Anatomy of a make rule 
 
@@ -455,7 +455,7 @@ We use a small set of `make` features consistently. Each project makefile follow
 - Accumulate output files in a `TARGETS` variable and define a phony `all: $(TARGETS)` at the bottom so `make all` rebuilds everything.
 
 ```
-R := C:\Users\bxn825\scoop\shims\rscript.exe
+R := Rscript
 
 TARGETS := 
 
@@ -512,7 +512,7 @@ makefile.env
 - Content of the settings makefile.env
 
 ```
-R := C:\Users\bxn825\scoop\shims\rscript.exe --quiet $< 1> log/$(basename $(notdir $<)).log 2>&1
+R := Rscript --quiet $< 1> log/$(basename $(notdir $<)).log 2>&1
 ```
 
 - Content of the main makefile 
@@ -565,7 +565,7 @@ If you work on a windows machine, consider installing the software using `scoop`
 2. Download the file `scoop_install_required_software.ps1` from the `_setup` folder in this repository.
 3. Right-click it and choose "run with powershell". 
 
-The file then installs all the software. Remember you still have to install extension within each piece of software manually.  
+The file then installs all the software. It also installs Python, radian, the R packages, and the VSCode extensions we use. You still need to point the VSCode R extension to radian (see `Python and radian` below) and install Better BibTeX in Zotero manually.  
 
 List of required software 
 
@@ -604,6 +604,13 @@ List of required software
     - Guides to get started using R
         - [4h R crash course](https://github.com/hhsievertsen/Advanced_R/) by Hans H. Sievertsen. With Economics related examples 
         - [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund.
+- Python and radian 
+	- [Python](https://www.python.org/) is a general programming language. We mainly need it to install [radian](https://github.com/randy3k/radian), an improved R console with syntax highlighting and autocompletion that works well with the VSCode R extension. 
+	- Installation via Scoop on Windows machines: `scoop install python`, then `python -m pip install -U radian`. 
+	- Point the VSCode R extension to radian: in VSCode settings, enable `r.bracketedPaste` and set `r.rterm.windows` to the path of `radian.exe` (type `(Get-Command radian).Source` in PowerShell to find it). 
+- Make 
+	- [Make](https://www.gnu.org/software/make/) is the build tool we use to run all project code. See [Automation and build tools](#automation-and-build-tools). 
+	- Installation via Scoop on Windows machines: `scoop install make`
 - Tinytex 
   - [Tinytex](https://yihui.org/tinytex/) is a lightweight LaTeX distribution that allows you to compile LaTeX documents to PDF.
   - Installation options: 
