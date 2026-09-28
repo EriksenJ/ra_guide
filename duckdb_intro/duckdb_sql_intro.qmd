@@ -1,0 +1,247 @@
+---
+title: Introduction to `duckdb` and SQL for register-scale data work
+date: last-modified
+toc: true
+numbersections: true
+mainfont: Times New Roman
+monofont: Times New Roman
+sansfont: Times New Roman
+seriffont: Times New Roman
+highlight-style: tango
+fontsize: 10pt
+geometry:
+    - margin=1in
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+    echo = TRUE,
+    warning = FALSE,
+    message = FALSE
+    )
+```
+
+\clearpage
+# Introduction
+
+This document is a hands-on companion to the [`RA guide`](https://github.com/EriksenJ/ra_guide) section on larger-than-memory datasets. It shows how to use the [`duckdb`](https://duckdb.org/) package from R to query parquet files with SQL, without loading the data into memory.
+
+The example data is simulated to look like Danish registers (BEF for demographics, IND for annual income), using canonical DST variable names (`PNR`, `AAR`, `ALDER`, `PERINDKIALT13`). You can run everything in this document without access to DST — the setup step below generates the parquet files locally.
+
+The recommended external reading is Grant McDermott's [Data wrangling with DuckDB](https://grantmcdermott.com/duckdb-polars/duckdb-sql.html), which covers both the dplyr and SQL modes side by side.
+
+
+# Why SQL for register work?
+
+You can drive `duckdb` from R in two ways:
+
+1. **dplyr verbs** via `to_duckdb()` (from the `arrow` package) plus `dbplyr`. Familiar if you already use `dplyr`; each verb chain gets translated into SQL under the hood.
+2. **Plain SQL** via `dbGetQuery()` or `dbSendQuery()`. You write the SQL yourself.
+
+For simple one-table filters and aggregations, dplyr-in-duckdb is fine and often the fastest way to get an answer. For anything more involved — joins across three or more registers, window functions (lags, running totals, ranks), CTEs to structure a multi-step query, or features `dbplyr` does not translate — SQL is usually clearer, faster to iterate on, and gives you the full duckdb feature set.
+
+The rule of thumb: **do the heavy lifting on disk in duckdb, `collect()` the small aggregated result into R for modeling and plotting.**
+
+
+# Setup
+
+```{r}
+pacman::p_load(
+    duckdb,
+    dplyr,
+    arrow,
+    rio,
+    here
+)
+```
+
+We will create a small working directory for the simulated parquet files.
+
+```{r}
+data_dir = here::here("duckdb_intro", "sim_data")
+dir.create(data_dir, showWarnings = FALSE, recursive = TRUE)
+```
+
+
+# Simulate register-style data
+
+We simulate two datasets:
+
+- `bef.parquet`: one row per person per year, with age (`ALDER`).
+- `ind.parquet`: one row per person per year, with personal income (`PERINDKIALT13`).
+
+Both are keyed on `(PNR, AAR)`.
+
+```{r}
+set.seed(42)
+
+n_pnr = 5000
+years = 2008:2022
+
+pnr_pool = sprintf("%010d", sample.int(1e9, n_pnr))
+birth_yr = sample(1950:2000, n_pnr, replace = TRUE)
+
+bef = expand.grid(PNR = pnr_pool, AAR = years, stringsAsFactors = FALSE) |>
+    as.data.frame()
+bef$ALDER = bef$AAR - birth_yr[match(bef$PNR, pnr_pool)]
+bef = subset(bef, ALDER >= 0 & ALDER <= 100)
+
+ind = bef[, c("PNR", "AAR")]
+ind$PERINDKIALT13 = round(
+    exp(rnorm(nrow(ind), mean = 12.5, sd = 0.6)) *
+        (1 + 0.01 * (bef$ALDER - 40))
+)
+
+bef |> export(file.path(data_dir, "bef.parquet"))
+ind |> export(file.path(data_dir, "ind.parquet"))
+
+list.files(data_dir)
+```
+
+
+# Connecting to duckdb
+
+Open an in-memory connection. Passing no path keeps everything in RAM; pass a file path (e.g. `"my_project.duckdb"`) if you want a persistent database. For querying parquet files, in-memory is usually all you need.
+
+```{r}
+con = dbConnect(duckdb())
+```
+
+
+# Querying a parquet file
+
+DuckDB reads parquet files directly — you do not have to load them into a table first. Just reference the path in `FROM`.
+
+```{r}
+dbGetQuery(con, sprintf(
+    "SELECT COUNT(*) AS n_rows FROM '%s'",
+    file.path(data_dir, "bef.parquet")
+))
+```
+
+For readability we can register the paths as duckdb views once, then reference them by name for the rest of the session:
+
+```{r}
+dbExecute(con, sprintf(
+    "CREATE OR REPLACE VIEW bef AS SELECT * FROM '%s'",
+    file.path(data_dir, "bef.parquet")
+))
+dbExecute(con, sprintf(
+    "CREATE OR REPLACE VIEW ind AS SELECT * FROM '%s'",
+    file.path(data_dir, "ind.parquet")
+))
+```
+
+Now the queries below can just say `FROM bef` and `FROM ind`.
+
+
+# Filter and aggregate
+
+Mean income by year, restricted to working-age respondents:
+
+```{r}
+dbGetQuery(con, "
+  SELECT AAR,
+         AVG(PERINDKIALT13) AS mean_income,
+         COUNT(*)           AS n_obs
+  FROM ind
+  JOIN bef USING (PNR, AAR)
+  WHERE ALDER BETWEEN 25 AND 60
+  GROUP BY AAR
+  ORDER BY AAR
+")
+```
+
+
+# Join across registers, group, and lag with a window function
+
+The realistic register task: join demographics and income on `(PNR, AAR)`, restrict to a sample, aggregate by age × year, and add each age group's prior-year mean using `LAG(...) OVER (PARTITION BY ALDER ORDER BY AAR)`.
+
+```{r}
+query = "
+  WITH joined AS (
+    SELECT b.PNR, b.AAR, b.ALDER, i.PERINDKIALT13
+    FROM bef b
+    JOIN ind i USING (PNR, AAR)
+    WHERE b.ALDER BETWEEN 25 AND 60
+      AND b.AAR   BETWEEN 2010 AND 2020
+  )
+  SELECT
+    AAR,
+    ALDER,
+    AVG(PERINDKIALT13)                                             AS mean_income,
+    LAG(AVG(PERINDKIALT13)) OVER (PARTITION BY ALDER ORDER BY AAR) AS mean_income_lag1,
+    COUNT(*)                                                       AS n_obs
+  FROM joined
+  GROUP BY AAR, ALDER
+  ORDER BY ALDER, AAR
+"
+
+result = dbGetQuery(con, query)
+head(result, 12)
+```
+
+The result is a plain `data.frame`, ready to save or plot:
+
+```{r}
+result |> export(file.path(data_dir, "mean_income_by_alder_year.parquet"))
+```
+
+
+# The same query with dplyr verbs
+
+For contrast, here is the aggregation (without the lag — see below) written with dplyr on a `to_duckdb()` connection:
+
+```{r}
+bef_tbl = open_dataset(file.path(data_dir, "bef.parquet")) |> to_duckdb(con = con)
+ind_tbl = open_dataset(file.path(data_dir, "ind.parquet")) |> to_duckdb(con = con)
+
+bef_tbl |>
+    inner_join(ind_tbl, by = c("PNR", "AAR")) |>
+    filter(ALDER >= 25, ALDER <= 60, AAR >= 2010, AAR <= 2020) |>
+    summarise(
+        mean_income = mean(PERINDKIALT13, na.rm = TRUE),
+        n_obs       = n(),
+        .by = c(AAR, ALDER)
+    ) |>
+    arrange(ALDER, AAR) |>
+    head(12) |>
+    collect()
+```
+
+`dbplyr` does not translate window functions like `LAG(...) OVER (...)` in a way that stays inside duckdb — you would have to `collect()` and then compute the lag in R. That is fine for this small result, but for a wider register sample where you want the lag computed before `collect()`, SQL is the right tool.
+
+
+# Inspect what dplyr sends to duckdb
+
+You can see the SQL that dplyr generates:
+
+```{r}
+bef_tbl |>
+    filter(ALDER >= 25, ALDER <= 60) |>
+    summarise(mean_alder = mean(ALDER), .by = AAR) |>
+    show_query()
+```
+
+
+# When to use what
+
+Our default is **SQL for anything on-disk, R for anything in-memory** (see the [`RA guide`](https://github.com/EriksenJ/ra_guide) for the reasoning):
+
+- **SQL in duckdb** for any transformation on a register-sized parquet file — joins, aggregations, window functions, sample construction.
+- **dplyr on `to_duckdb()`** only for exploration — poking at a dataset to figure out what SQL you eventually want to write. Once the query becomes pipeline code, port it to SQL. The `show_query()` trick above is a useful stepping stone if you are still learning SQL.
+- **Base R / `data.table` / `fixest` / `ggplot2`** for everything downstream of `collect()` — modeling, plotting, small-table manipulation.
+
+
+# Cleanup
+
+```{r}
+dbDisconnect(con, shutdown = TRUE)
+```
+
+
+# References
+
+- Grant McDermott, [Data wrangling with DuckDB](https://grantmcdermott.com/duckdb-polars/duckdb-sql.html).
+- DuckDB [SQL introduction](https://duckdb.org/docs/sql/introduction) and [window functions](https://duckdb.org/docs/sql/window_functions).
+- [awesome-arrow-r](https://github.com/thisisnic/awesome-arrow-r) — the `arrow` + `duckdb` combination in R.
