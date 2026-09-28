@@ -245,3 +245,8 @@ dbDisconnect(con, shutdown = TRUE)
 - Grant McDermott, [Data wrangling with DuckDB](https://grantmcdermott.com/duckdb-polars/duckdb-sql.html).
 - DuckDB [SQL introduction](https://duckdb.org/docs/sql/introduction) and [window functions](https://duckdb.org/docs/sql/window_functions).
 - [awesome-arrow-r](https://github.com/thisisnic/awesome-arrow-r) — the `arrow` + `duckdb` combination in R.
+
+
+# TODO 
+
+- Add an introduction to distributed work on the DST server - based on Anders Humlum's [guide](https://www.andershumlum.com/codes)
