@@ -1,47 +1,45 @@
 
 # Introduction 
 
-This page describes the general RA guidelines we employ for our projects. The purpose of the guidelines is to make it easier to focus on doing replicable and properly documented work. The guidelines draw heavily on 
+This page describes the general RA guidelines we employ for our projects. The purpose of the guidelines is to make it easier to focus on doing replicable and properly documented work. The guidelines draw heavily on Gentzkow and Shapiro's work on reproducible research:
 
-- _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
+- _Code and Data for the Social Sciences: A Practitioners Guide_. Gentzkow and Shapiro (2014). [Link](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) 
 	- The document contains a general introduction to reproducibility challenges that many social science researchers have faced and how the two authors have tried to solve them in their lab. Emphasizes coding conventions, directories, and version control.  
-- _Lab Manual_. Gentzkow and Shapiro. [Link](https://github.com/gslab-econ/lab-manual/wiki)
-  - This supplements their (2014) document. It includes information on workflows, coding, data handling, and paper and slide production. We generally follow their workflow approaches (e.g., using GitHub issues to assign and resolve tasks).  
+- _Lab Manual_. Gentzkow and Shapiro. [Link](https://github.com/gslab-econ/lab-manual/wiki) — supplements the 2014 document with workflows, coding, data handling, and paper/slide production. We follow their workflow approach (e.g., using GitHub issues to assign and resolve tasks).
 
-How to get started: (Talk with supervisor about which tasks makes sense for you)
 
-- Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
-- Read this document.  
-	- You do not have to follow links the first time you read the document. They are there for reference. 
-- Install the necessary software on your local computer as described under `Software/Required`. 
-- Set up git on your computer and a GitHub account as described under `Version Control`. 
+## Onboarding checklist 
+
+Talk with your supervisor about which tasks make sense for you, then work through the following:
+
+- Read [Gentzkow and Shapiro (2014)](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf).
+- Read this document. You do not have to follow links the first time; they are there for reference.
+- Install the required software — see [Software / Required](#required).
+- Set up Git and a GitHub account — see [Version Control](#version-control).
+- Setup Claude Code account. 
 - Ask your supervisor to add you to the relevant projects on GitHub and Zotero.
-- Get to know R
-  - *Getting started*: Read Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
-  - *`data.table`*: Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) and try out the commands in your own R script. 
-    - The document describes basics like viewing data, subsetting, creating new variables, and using the `.SD` capability.
-  - *`exercises`*: Go through the `r_introduction.qmd` quarto document that you can find on this Github page. 
-  - *duckdb for large parquet files*: Go through Grant McDermott's [introduction to using `duckdb`](https://grantmcdermott.com/duckdb-polars/duckdb-sql.html), a lightweight database system, to work with large parquet files without having to load them into r. 
-    - `duckdb + dplyr` verbs is often substantially faster than loading data into R and using `dplyr` or `data.table` for (1) doing simple data wrangling, and (2) doing straightforward descriptive statistics such as counts, summary statistics, etc. 
+- Get to know R — see [Learn R](#learn-r).
 
-After you have finished these steps, we will assign tasks to you via the Github project(s). 
+After these steps, we will assign tasks to you via the GitHub project(s). 
 
+Optional 
+
+- Go through DST server exercises. 
+- Go through github exercises. 
 
 # Workflow 
 
 ## Tasks 
 
-- We follow Gentzkow and Shapiro's workflow [approach](https://github.com/gslab-econ/lab-manual/wiki/Workflow). 
-- Tasks will be specified on GitHub under the relevant project as `issues`. We do this to keep track of open tasks, task notes and questions, and outputs. You can familiarize yourself with GitHub issues [here](https://github.com/features/issues). 
-  - A supervisor will add you to the relevant project(s) on GitHub.
+- We follow Gentzkow and Shapiro's workflow [approach](https://github.com/gslab-econ/lab-manual/wiki/Workflow). - Tasks will be specified on GitHub under the relevant project as `issues`. We do this to keep track of open tasks, task notes, task  questions, and outputs. You can familiarize yourself with GitHub issues [here](https://github.com/features/issues). 
 - Each task will contain 
 	- A description. 
 	- A set of outcomes. 
 	- A task supervisor. 
 	- One or more task assignees.
 - When working on a task 
-	- Keep documentation of your work. We suggest having a `running_notes_(your initials).md` document where you store your thoughts. A good practice is to add headlines with dates so that it becomes easier to go back to find thoughts related to a task you previously worked on.  
-- Asking questions 
+	- Keep documentation of your work. We suggest having a `running_notes_(your initials).md` document where you store your thoughts. Keep this in the project dropbox folder. Our experience is that headlines with dates (e.g., 2026-09-28) makes it easier to go back to find thoughts related to a task you previously worked on.  
+- Ask questions 
     - We encourage you to work independently but ask questions when you realize you are stuck or something seems unclear. We all get stuck. And it happens particularly often when we start working with the administrative data, so do come around and ask. Our experience is that RAs who ask questions early on are more productive in the long run.
     - If you ask about clarifications or questions related to a task in person, add a note about the questions and answers to the GitHub issue so we can track the progress.  
 - A task is closed by the task supervisor when 
@@ -49,80 +47,96 @@ After you have finished these steps, we will assign tasks to you via the Github 
 	- The task assignee has written a reply to the GitHub issue on how they completed the task and where relevant outcome files are located (e.g., the code file cleaning a bit of data or the note summarizing results). 
 	- The task supervisor agrees that the task is completed. 
 
-
 ## Reporting and notes 
 
-- We write notes and documents in markdown format with files ending in `.md` unless another format is required. 
+- We write notes in markdown format (files ending in `.md`) whenever possible. Reach for another format only when the task genuinely requires it (e.g., a collaborative live document, or a paper that must be in LaTeX). 
 	- Markdown documents can easily be compiled into Word, PDF (via LaTeX), HTML, beamer PDF slides, or other formats using `pandoc` or `quarto`. 
+	- Markdown files are plain text, so they play well with Git: diffs are readable, merges are tractable, and full history is preserved. 
 	- Searching (and replacing) across multiple markdown files for content using typical text editors is easy. 
-	- Markdown files can be edited using most text editors. We suggest VSCode and Obsidian. 
+	- Markdown files can be edited using most text editors. We suggest VSCode. 
 	- [Introduction to basic markdown syntax](https://www.markdownguide.org/basic-syntax/) written by the developers behind the original markdown language (it comes in many flavors).
-- We keep personal running notes documents. 
+- We keep personal running-notes documents. 
 	- These typically contain thoughts and drafts for notes and tasks. 
-	- The document will typically be named `running_notes_` and end in our initials, e.g., `running_notes_je.md`.  
-
+	- The document will typically be named `personal_notes/log_*.md` and end in our initials, e.g., `personal_notes/log_je.md`.  
 
 ## References 
 
+Zotero 
+
 - We use Zotero to maintain shared libraries with project references.  
-  - A supervisor will add you to the relevant project(s) on Zotero.
-- We use the `betterbiblatex` extension for Zotero to export `.bib` files to projects or to Overleaf. 
+   - We use the `betterbiblatex` extension for Zotero to export `.bib` files to projects or to Overleaf. 
 - When adding a new reference to a Zotero project collection, pin the bibtex key. 
   - Right-click the reference and select `better bibtex` -> `pin citekey`.
   - Remember to set up the `better bibtex` extension to use the correct citekey structure. See `Software / Required / Zotero`. 
 
+Papers, reports, etc. 
 
-## Writing papers 
+- We store pdf's (or other formats) of papers, files, etc. in the `literature/` folder. 
 
-- We use Overleaf to write papers in LaTeX format unless otherwise specified. Overleaf allows us to 
-	- Work on the paper at the same time
-	- Integrate references from shared Zotero libraries
+## Writing papers and collaborative documents 
 
+- For interactive, real-time collaborative documents we use **Overleaf** or **Google Docs**. 
+	- **Overleaf** for papers and anything else written in LaTeX. It lets us work on the paper simultaneously and integrates references from shared Zotero libraries. 
+	- **Google Docs** for lighter-weight collaborative writing — meeting notes taken jointly, quick drafts to circulate, or documents shared with collaborators outside the group who don't use LaTeX or markdown. 
+- For everything else — personal notes, task write-ups, README-style documentation — prefer markdown tracked in Git (see *Reporting and notes*).
 
 # Version Control 
 
-- We use the [Git version control system](https://github.com/gslab-econ/lab-manual/wiki/Code) to track changes to our notes and code. Git allows you to add, delete, or modify files, mark them as changed (committing), and finally add them to the project (pushing to the remote repository). All changes to files will then appear in the project Git history.
-- We use GitHub to host our remote repositories for  _non-sensitive_ project files. 
-    - You can keep the local non-sensitive project files where you prefer. 
+Git 
+
+- We use Git to track changes whenever possible — code, notes, paper sources, configuration. If a file can live in a Git repository, put it there. 
+   - Git lets you add, delete, or modify files, mark them as changed (committing), and finally publish them (pushing to the remote repository), with the full change history preserved. See the [Git version control system overview](https://github.com/gslab-econ/lab-manual/wiki/Code). 
+- We use GitHub to host our remote repositories for _non-sensitive_ project files. 
+    - You can keep the local non-sensitive project files where you prefer on your computer. 
     - You will pull and push changes to this remote directory to update general project files.  
-    - A supervisor will add you to the relevant project(s) on GitHub.
 - We use a local Git repository for content stored on secure servers. 
-- A basic workflow for using Git is to Pull the latest version of project files from the remote repository. 
-    1. Pull latest updates from the remote repository.
-    2. Make changes to the files you are working on. 
-    3. Commit your changes. 
-	    1. Add a reference to the task you are working on in the commit message if relevant. You do this by adding adding a reference to the task-number, e.g.,  ` #123 Add peer-group-control robustness regression - (text)`, in front of the commit message.  (Read Chris Beams' article on good commit messages). 
-    4. Pull the latest updates from the remote repository and resolve any conflicts. 
-    5. Push your changes to the remote repository. 
+- **What NOT to put in Git.** GDPR-sensitive microdata (never commit — even locally in a repo that might sync to GitHub), large binary data that can be regenerated, and generated outputs like `temp/` and `out/` folders. Add these to `.gitignore` from the start of a project.
+- **`.gitignore` essentials.** Every project should have a `.gitignore` at its root covering, at minimum: `temp/`, `out/`, `*.log`, `.Rhistory`, `.RData`, `.Rproj.user/`, `.DS_Store`, credentials files, and any local paths to raw data. GitHub's [gitignore template collection](https://github.com/github/gitignore) has starting points for R, Python, and LaTeX.
+
+A basic Git workflow: 
+
+1. Pull latest updates from the remote repository.
+2. Make changes to the files you are working on. 
+3. Commit your changes. 
+ 4. Add a reference to the task you are working on in the commit message if relevant. You do this by adding adding a reference to the task-number, e.g.,  ` #123 Add peer-group-control robustness regression - (text)`, in front of the commit message.  (Read Chris Beams' article on good commit messages). 
+4. Pull the latest updates from the remote repository and resolve any conflicts. 
+5. Push your changes to the remote repository. 
+
+**Branching and pull requests.** 
+
+When you start work on a task — a new analysis, a nontrivial edit, an experiment you are not sure will pan out — create a branch for it rather than committing straight to `master`/`main` if you are working outside the Dropbox folder. 
+    - Name the branch after the task, e.g., `je-issue-123-peer-group-robustness` or `clean-bef-fix`. 
+    - Commit and push freely on the branch. 
+    - When the work is ready for review, open a pull request (PR) on GitHub. Link the PR to the issue it resolves by including `Closes #123` (or `Fixes #123`) in the PR description — GitHub will auto-close the issue when the PR is merged.
+    - The task supervisor reviews the PR, requests changes if needed, and merges when the work is done. Discussion of the *task* stays on the issue; discussion of the *code* stays on the PR.
+    - This keeps `master` in a working state, makes it easy to abandon dead ends, and gives the supervisor a clear diff to review.
+    - For tiny changes (a typo, a one-line note update) committing directly to `master` is fine.
 - Guides 
 	- Basic (takes about 20 minutes total and well worth it): [Git Handbook](https://guides.github.com/introduction/git-handbook/), [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/), [Mastering Issues](https://guides.github.com/features/issues/), [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 	- Detailed: [Pro Git](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control), [Version Control with Git](https://www.amazon.com/Version-Control-Git-collaborative-development-ebook/dp/B008Y4OR3A/ref=mt_kindle?_encoding=UTF8&me=&qid=1531951134), Chapters 4-9
 	- [Writing good Git commit messages](https://cbea.ms/git-commit/) by Chris Beams.  
-- Setup: (based on https://github.com/gslab-econ/lab-manual/wiki/Setup) 
-	- [Create a GitHub account and install the Git desktop/command line clients](https://help.github.com/articles/set-up-git/).
 
 
-# Project structure 
+# Project storage structure 
 
-## Project storage 
+We use a combination of University-secure storage, Dropbox, Githup repositories and secure servers at Statistics Denmark.  The local project might contain notes, literature reviews, code that doesn't need to run on a secure server, and paper drafts. The secure server project location will exist when the project requires restricted access data (e.g., from Statistics Denmark).
 
-- We generally store non-sensitive project files in private GitHub repositories (one per project).
-Using Github repositories ensures all project participants can access the relevant files.
-  - It also makes it easy to track file changes and revert to previous versions if necessary. 
-  - We use the `git` version control system to pull and push files to the Github repositories.
-  - Supervisors will add you to the relevant project(s) on GitHub.
-- We store sensitive files on a secure UCPH server. 
-  - Supervisors can give you access to relevant folders. 
-- GDPR-sensitive microdata is typically stored on a secure server hosted at Statistics Denmark. This includes administrative data from Statistics Denmark and the Ministry of Education we use in our projects.
-  - Documentation on Statistics Denmark's researcher data access and storage is available [here](https://www.dst.dk/en/TilSalg/Forskningsservice).
-  - If you work with sensitive microdata, your project supervisor will help you set up access.
-  - Before getting access, you are required to read and sign the internal UCPH ECON and Statistics Denmark guidelines on working with sensitive data.
-  - We follow the internal UCPH ECON guidelines on working with sensitive data, including what information can be downloaded from the secure server. 
+- Getting started
+  - Your project supervisor will help you set up access.
+  - Before getting access to DST register data, you must read and sign the internal UCPH ECON and Statistics Denmark guidelines on working with sensitive data.
+  - We follow the UCPH ECON guidelines on working with sensitive data, including what information can be downloaded from the secure server. 
+- Sensitive local project files  - KU-secure storage 
+    - We keep local sensitive files on a secure drive at UCPH.  Supervisors can give you access to the relevant folders.
+- Dropbox 
+    - We use Dropbox to store large files that are non-sensitive and must be accessed locally. Examples include paper pdf's and raw data files.
+- Sensitive DT register data 
+    - GDPR-sensitive microdata (e.g., administrative data from Statistics Denmark and the Ministry of Education) is stored on a secure server hosted at Statistics Denmark.
+    - Documentation on Statistics Denmark's researcher data access and storage: <https://www.dst.dk/en/TilSalg/Forskningsservice>.
+- Github private repositories for non-sensitive local project files
+    - Non-sensitive project files live in private GitHub repositories (one per project), so all project participants have access and file history is preserved. See [Version Control](#version-control) for the workflow.
 
+## Directories  structure - generally
 
-## Directories  
-
-- Our projects are typically distributed locally and on a secure server.  The local project might contain notes, literature reviews, code that doesn't need to run on a secure server, and paper drafts. The secure server project location will exist when the project requires restricted access data (e.g., from Statistics Denmark). 
 - We generally apply the rules from Gentzkow and Shapiro (2014), chapter 4: 
 	1. Separate directories (folders) by function. 
 	2. Separate files into inputs and outputs (and temporary files) 
@@ -135,15 +149,15 @@ presentations/
 paper/
 ```
 
-- All components containing code should have at least a `code`, `temp`, and `out` folder. For example, assume that the simple project contains a simulation exercise written in R showing the consistency of an econometric estimator. The code file outputs the graph `simulate_estimator_consistency_distribution.PDF`. The folders could look like 
+- All folders containing code should have at least a `src`, `temp`, and `out` folder. For example, assume that the simple project contains a simulation exercise written in R showing the consistency of an econometric estimator. The code file outputs the graph `simulate_estimator_consistency_distribution.pdf`. The folders could look like 
 
 ```
 consistency_simulation/
-	code/ 
+	src/ 
 		simulate_estimator_consistency.R 
 	temp/
 	out/
-		simulate_estimator_consistency_distribution.PDF
+		simulate_estimator_consistency_distribution.pdf
 lit_review/ 
 presentations/
 paper/
@@ -155,14 +169,14 @@ paper/
 ```
 buildraw/ 
 	dst/
-		dat1.sas7bdat
+		demo_fixed.sas7bdat
 		dat2.sas7bdat
 consistency_simulation/
-	code/ 
+	src/ 
 		simulate_estimator_consistency.R 
 	temp/
 	out/
-		simulate_estimator_consistency_distribution.PDF
+		simulate_estimator_consistency_distribution.pdf
 lit_review/ 
 presentations/
 paper/
@@ -201,22 +215,61 @@ dat |> export("builddata/out/clean_bef.parquet")
 	- _Example_: We have written code that cleans the raw `BEF` register data for use in subsequent analyses. The file (sh)could be named `clean_bef.R`. 
 - Script outputs must contain the name of the producing script and be informative about the content. 
 	- _Example_: Assume the file `describe_main_sample.R` outputs two summary tables in LaTeX format. One is a balance table with means and differences in means between treatment and control groups, and one contains general summary statistics for the full sample. These (sh)could be named `describe_main_sample_balance.tex` and `describe_main_sample_summary.tex`.
-- No line of code should be more than 100 characters long. All languages we work in allow you to break a logical line across multiple lines on the page (e.g., using `///` in Stata or `...` in Matlab). You may want your editor to show a “margin” of 100 characters.
-- Functions should not typically be longer than 200 lines.
+- Keep lines under 100 characters (set your editor's margin to 100). Break long lines with the language's continuation syntax — `///` in Stata, `...` in Matlab, a plain newline inside brackets/parens in R and Python.
+- Keep functions under about 200 lines.
+
+
+## Data validation 
+
+Silent errors from bad joins or upstream data changes are the most common source of hard-to-track bugs in register work. A script that produces a wrong table without erroring is worse than one that crashes.
+
+Every non-trivial build script should assert its assumptions and fail loudly on violations:
+
+- **Row counts** after each join or filter (expected vs. actual).
+- **Key uniqueness** on tables that should have one row per unit.
+- **No unexpected `NA`s** in downstream-critical variables.
+- **Value ranges** where they matter (e.g., `ALDER` between 0 and 120).
+
+In R, `stopifnot()` is the simplest tool. Log the checked counts as you go so reviewers can see what the script produced:
+
+```r
+n_bef    = nrow(bef)
+n_joined = nrow(joined)
+message(sprintf("bef: %d rows, joined: %d, dropped: %d",
+                n_bef, n_joined, n_bef - n_joined))
+stopifnot(
+    n_joined >= 0.95 * n_bef,                     # at most 5% drop
+    !anyDuplicated(joined, by = c("PNR", "AAR")), # key uniqueness
+    !any(is.na(joined$PERINDKIALT13))             # required variable present
+)
+```
+
+For SQL pipelines, run a follow-up `SELECT COUNT(*)` (or similar) and assert in R:
+
+```r
+n_after = dbGetQuery(con, "SELECT COUNT(*) AS n FROM joined")$n
+stopifnot(n_after == expected_n)
+```
+
+When a validation fails, fix the query — do not just update the expected value.
 
 
 ## R 
 
-- We follow [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml) 
+- We follow [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html) 
 - Exceptions to style guide: 
-	- Separate using underscores, and keep lowercase. Example: `.CalcMeans()` should be `calc_mean()`.  
+	- Use `snake_case` for function and variable names (lowercase, words separated by underscores). Example: prefer `calc_mean()` over `CalcMean()`.
 - Use the `rio` [package](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) for data import/export. 
     - It supports many file types and generally uses the most efficient IO tool for importing/exporting the file format.
-- Use the `data.table` [package](https://stata2r.github.io/data_table/) for data wrangling when possible. 
-	- [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) from the authors of the package. 
-	- [Introduction for Stata users](https://stata2r.github.io/data_table/)
-	- [data.table chapter](https://bookdown.org/ronsarafian/IntrotoDS/datatable.html) in Introduction to Data Science. 
-	- [data.table cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/datatable.pdf). 
+- **Data wrangling — pick the tool by where the data lives:**
+	- **On-disk parquet at register scale**: SQL in duckdb (see [Larger than memory datasets](#larger-than-memory-datasets)).
+	- **In-memory `data.frame`**: use [`data.table`](https://stata2r.github.io/data_table/) for anything non-trivial. It is much faster than base R or `dplyr` at scale, has a compact syntax once you learn it, and matches most of our existing code.
+	- **Quick exploration on small tables**: `dplyr` is fine.
+- `data.table` resources:
+	- [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) — from the package authors.
+	- [Introduction for Stata users](https://stata2r.github.io/data_table/).
+	- [data.table chapter](https://bookdown.org/ronsarafian/IntrotoDS/datatable.html) in *Introduction to Data Science*.
+	- [data.table cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/datatable.pdf).
 - Use the `fixest` [package](https://lrberge.github.io/fixest/) by Laurent Berge for estimating most types of statistical models, particularly linear and IV models with fixed effects, when possible.
 	- It provides estimation tools typically much faster than other options in R and Stata.
 	- Linear, fixed effects, and 2SLS models can be estimated via `feols()`.  
@@ -229,70 +282,129 @@ dat |> export("builddata/out/clean_bef.parquet")
 
 ### Larger than memory datasets 
 
+Register data (BEF, IND, UDDA, ...) is often too large to load into R at once. Rather than fighting for RAM, keep the data on disk as `.parquet` and query it with `duckdb` — a lightweight SQL engine that reads parquet natively and only materializes what you actually need. You can drive it from R either with dplyr verbs (via `to_duckdb()` / `dbplyr`) or with SQL directly.
 
-- We sometimes work with datasets that are larger-than-memory, meaning that loading them requires (nearly) all or more than the RAM available on servers. We can avoid loading data into R using the `arrow` and `duckdb` packages. 
-  - [Introduction](https://github.com/thisisnic/awesome-arrow-r) to using `arrow` (with ` duckdb`) in R.
-  - [Introduction](https://grantmcdermott.com/duckdb-polars/duckdb-sql.html) to using `duckdb` with `dplyr` functions. 
+**Our default: SQL for anything on-disk, R for anything in-memory.**
 
-- Example of interacting with a parquet file using using the `duckdb` package `dplyr` verbs:
+When you are working with a parquet file that is register-sized or larger, write the transformation in SQL and let duckdb run it against the parquet. Only `collect()` into R once the result is small enough to reason about interactively — typically after your final `GROUP BY`.
 
-```
+Reach for dplyr-in-duckdb (`to_duckdb()`) only when you are exploring — poking at a dataset to figure out what SQL you eventually want to write. The moment the analysis becomes reproducible pipeline code, port it to SQL.
+
+Why this default:
+
+- Multi-register joins, lags, and sample construction are all cleaner in SQL than in dbplyr, and dbplyr silently `collect()`s some operations (like window functions) — surprising if you expect them to stay on disk.
+- A SQL string is version-controllable, copy-pasteable, and readable by anyone who reads SQL — a dplyr chain is not portable outside R.
+- Consistency across projects: any RA reading a build script sees SQL, not a mix.
+
+Keep using R (base, `data.table`, `fixest`, `ggplot2`) for everything downstream of `collect()`: modeling, plotting, small-table manipulation.
+
+**Getting started**
+
+- Grant McDermott's [Data wrangling with DuckDB](https://grantmcdermott.com/duckdb-polars/duckdb-sql.html) — the recommended entry point. Covers dplyr and SQL modes side by side, so you can see when each is more natural.
+- The `duckdb_intro/duckdb_sql_intro.qmd` document in this repository — a hands-on walkthrough on simulated BEF- and IND-style data that you can run without DST access.
+- [awesome-arrow-r](https://github.com/thisisnic/awesome-arrow-r) — reference for the `arrow` + `duckdb` combination.
+- Official [DuckDB SQL reference](https://duckdb.org/docs/sql/introduction).
+
+**Example: dplyr verbs on a parquet file**
+
+```r
 # load packages 
-library(duckdk)
+library(duckdb)
 library(tidyverse)
 library(arrow) 
 
-# create and/or connect to existing database file (the name doesn't matter) 
+# create and/or connect to an existing database file (the name doesn't matter) 
 db = dbConnect(duckdb(), "database.duckdb")
 
-# open a connection to the parquet file and treat it as a duckdb database
-#  select only the three of the variables in the dataset 
+# open a connection to the parquet file and treat it as a duckdb database, 
+# selecting only the three variables we need 
 dat_db = open_dataset("path_to_data.parquet") %>% 
     to_duckdb() %>% 
     select(id, group = Group, salary)
 
-# find number of groups 
-dat_db %>% count(group) %>% count(n)
+# find number of distinct groups 
+dat_db %>% summarise(n_groups = n_distinct(group))
 
-# Find average salary by group 
+# average salary by group 
 dat_db %>% summarise(ave_salary = mean(salary, na.rm = T), .by = c(group))
 
-# Plot average salary by group number 
+# plot average salary by group 
 dat_db %>% 
     summarise(ave_salary = mean(salary, na.rm = T), .by = c(group)) %>% 
     ggplot(aes(group, ave_salary)) + 
     geom_point() 
 
-# Load observations with salaries higher than 1,000,000 DKK into R 
+# pull observations with salary above 1,000,000 DKK into R 
 dat_highsal = dat_db %>% 
     filter(salary > 1000000) %>% 
     collect() 
 
-# Make R explain the database query it sends to duckdb when summarising salaries
+# inspect the query duckdb will run 
 dat_db %>% 
     summarise(ave_salary = mean(salary, na.rm = T), .by = c(group)) %>% 
     explain() 
-``` 
+```
+
+**Example: SQL for register-style work (join, aggregate, lag)**
+
+The typical register task is: pull rows from one or more registers by ID and year, join them, and derive an outcome. Below we join demographics (`bef.parquet`) with annual income (`ind.parquet`) on `PNR` and `AAR`, filter to working-age respondents in 2010–2020, compute mean personal income (`PERINDKIALT13`) by age (`ALDER`) and year, and add each age group's prior-year mean as a lag using a window function partitioned by `ALDER`. The aggregated result is small enough to `collect()` and store as parquet.
+
+```r
+library(duckdb)
+library(rio)
+
+con = dbConnect(duckdb())
+
+query = "
+  WITH joined AS (
+    SELECT b.PNR, b.AAR, b.ALDER, i.PERINDKIALT13
+    FROM 'buildraw/dst/bef.parquet' b
+    JOIN 'buildraw/dst/ind.parquet' i USING (PNR, AAR)
+    WHERE b.ALDER BETWEEN 25 AND 60
+      AND b.AAR   BETWEEN 2010 AND 2020
+  )
+  SELECT
+    AAR,
+    ALDER,
+    AVG(PERINDKIALT13)                                             AS mean_income,
+    LAG(AVG(PERINDKIALT13)) OVER (PARTITION BY ALDER ORDER BY AAR) AS mean_income_lag1,
+    COUNT(*)                                                       AS n_obs
+  FROM joined
+  GROUP BY AAR, ALDER
+  ORDER BY ALDER, AAR
+"
+
+result = dbGetQuery(con, query)
+
+result |> export("builddata/out/mean_income_by_alder_year.parquet")
+
+dbDisconnect(con, shutdown = TRUE)
+```
+
+Things this shows that dplyr-in-duckdb makes awkward:
+
+- Direct parquet paths in `FROM` — no need to register tables first.
+- A CTE (`WITH joined AS ...`) so the join is defined once and reused.
+- `LAG(...) OVER (PARTITION BY ALDER ORDER BY AAR)` — window functions are much cleaner in SQL than in dbplyr.
+- The final row count is small (AAR × ALDER), so `dbGetQuery` returns a plain `data.frame` straight into R.
 
 
-### Guides to get started with R
+# Learn R 
 
 
-- How to get started:
-  - Read parts Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) and solve the associated exercises. 
-  - Read through Atrebas' [introduction to using the `data.table` package](https://atrebas.github.io/post/2020-06-17-datatable-introduction/). 
-    - The document describes basics like viewing data, subsetting, creating new variables, and using the `.SD` capability.
-  - Go through the `r_introduction.qmd` quarto document that you can find on this Github page. 
-- Other great guides
-  - [R for Data Science (2e)](https://r4ds.hadley.nz/) is an online and free goto reference for getting started with simple and more advanced R, including data IO with [arrow](https://r4ds.hadley.nz/arrow), writing [functions](https://r4ds.hadley.nz/functions), and using [`quarto`](https://r4ds.hadley.nz/quarto) to communicate results. 
-    - Each chapter comes with great exercises. 
-    - The main author, Hadley Wickham, has been a driving force in developing R packages, including a majority of the `tidyverse` package since the 2000s. 
-  - Hans Henrik Sievertsen's [Applied Econometrics with R](https://hhsievertsen.github.io/applied_econ_with_r/) introduces using R for applied econometrics, including data cleaning, visualization, descriptive statistics, and regression analysis (using `feols` and `modelsummary`). This guide is great for when you've gotten the hang of basic R. 
-  - Hans Henrik Sievertsen's [Interactive introduction to R](https://hhsievertsen.shinyapps.io/r_introduction//#section-welcome). It introduces basic data handling (loading data, modifying and merging datasets) and plotting. 
-- ChatGPT often gives great solutions to coding problems! 
+- **Getting started** — work through these in order:
+  - Hans Henrik Sievertsen's [Introduction to R](https://github.com/hhsievertsen/Advanced_R/) — a short crash course with economics-related examples. Solve the associated exercises.
+  - Atrebas' [introduction to `data.table`](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) — viewing data, subsetting, creating variables, using `.SD`.
+  - The `r_introduction.qmd` quarto document in this repository (`r_intro/`).
+  - Grant McDermott's [introduction to `duckdb`](https://grantmcdermott.com/duckdb-polars/duckdb-sql.html) for working with large parquet files without loading them into R. `duckdb + dplyr` is often substantially faster than `data.table` or `dplyr` for simple wrangling and descriptive statistics.
+- **Deeper references:**
+  - [R for Data Science (2e)](https://r4ds.hadley.nz/) by Hadley Wickham — the go-to reference, free online, with chapters on data IO with [arrow](https://r4ds.hadley.nz/arrow), writing [functions](https://r4ds.hadley.nz/functions), and using [Quarto](https://r4ds.hadley.nz/quarto) to communicate results. Each chapter has exercises.
+  - Hans Henrik Sievertsen's [Applied Econometrics with R](https://hhsievertsen.github.io/applied_econ_with_r/) — data cleaning, visualization, and regression (with `feols` and `modelsummary`). Good once you have the basics.
+  - Hans Henrik Sievertsen's [Interactive introduction to R](https://hhsievertsen.shinyapps.io/r_introduction//#section-welcome) — data handling and plotting basics in your browser.
+- ChatGPT often gives great solutions to coding problems.
 
 
-# Automation
+# Automation and build tools
 
 
 - We automate everything that can be automated. This implies writing scripts to do all data cleaning, analysis, and table formatting, and using build tools to run these scripts in the correct order.
@@ -302,112 +414,69 @@ dat_db %>%
 
 ## Build tool - `make` 
 
+- Build tool software gives us a "button" we can push that will run all of our code in the correct order. 
+    - Simple build tools (e.g., an R file that runs other R files) run all code in the correct order from scratch and produces all outputs we need. 
+    - Good build tools tracks which files have changed and therefore what code needs to be re-run if we change code somewhere in our project pipeline. 
+- We use `make` because it is (almost) always available, including on the Statistics Denmark secure servers where more modern build tools like `snakemake` and `cmake` typically are not. Official documentation: <https://www.gnu.org/software/make/manual/make.html>.
+- Make builds `targets` defined in a `makefile` by running code whenever `dependencies`. 
+- Recommended tutorials for `make` for data analysis:
+	- [Automation and Make](https://swcarpentry.github.io/make-novice/) — Software Carpentry.
+	- [Makefiles for R/LaTeX projects](https://robjhyndman.com/hyndsight/makefiles/) — Rob Hyndman.
+	- [Minimal make](https://kbroman.org/minimal_make/) — Karl Broman.
+	- [GNU Make for Reproducible Data Analysis](http://zmjones.com/make/) — Zachary Jones.
+- Installation: pre-installed on macOS/Linux. On Windows, install via `rtools`, Cygwin, or GNUWin32.
 
-- Build tools generally help run your project code in the correct order based on a set of rules that specify output targets and inputs, including code files. Some examples of more advanced build tools include `snakemake`, and `cmake`. I have generally found that these modern build tools are unavailable on the secure servers hosted at Statistics Denmark, where a substantial part of my project code resides. 
-- We, therefore, use the slightly more archaic `make`. 
-- Documentation for `make` is available [here](https://www.gnu.org/software/make/manual/make.html). 
-- Helpful introductions to `make` for data analysis 
-	- [Automation and Make](https://swcarpentry.github.io/make-novice/) by Software Carpentry. 
-	- [Makefiles for R/Latex projects](https://robjhyndman.com/hyndsight/makefiles/) by Rob Hyndman.
-	- [Minimal make](https://kbroman.org/minimal_make/) by Karl Broman. Runs a couple of R scripts and creates a latex compiled PDF paper with the resulting figures.  
-	- [GNU Make for Reproducible Data Analysis](http://zmjones.com/make/) by Zachary Jones. 
-- An important feature of `make` is that it compiles or runs project code based on a general recipe, the `makefile`.  The `makefile` consists of _targets_, _dependencies_, and _commands_, which together defines _rules_.   A `makefile` can contain multiple rules. These rules can be linked, for example, if a rule uses the target of another rule as a dependency. 
-	- _Target_: The output file or goal you want to achieve. E.g., `builddata/out/clean_data.parquet`
-	- _Dependencies_: Files or targets that must be up-to-date before executing the target's commands. This will typically include the code file you want to run, and the data it uses. E.g., `builddata/code/clean_data.R`, and `buildraw/out/rawdata.csv`. 
-	- _Command_: The command(s) that `make` will execute to create or update the target. `make` basically runs from the command line meaning that you must either use a command that is available from the CLI or specify the full path to the program. If, for example,  you want to run an r script, you can use the CLI command `rscript` when this is installed. 
+### Anatomy of a make rule 
+
+A `makefile` is a set of _rules_. Each rule has a **target** (the output file to build), **dependencies** (files that must exist and be up-to-date first), and a **command** (what to run to produce the target). When you type `make <target>`, `make` walks the dependency graph and re-runs commands only where a dependency has changed since the target was last built.
 
 ```
 #target: dependencies
 #	command
 
-builddata/out/clean_data.parquet: builddata/code/clean_data.R buildraw/out/rawdata.csv
-	rscript builddata/code/clean_data.R
+builddata/out/clean_data.parquet: builddata/src/clean_data.R buildraw/out/rawdata.csv
+	Rscript builddata/src/clean_data.R
 ```
 
-- Make `make` run your command 
-	1. Navigate a command line tool such as `cmd` to the project folder where the makefile is located.
-	2. In the command line, type `make target`, where target is the file you want to build.  E.g., `make builddata/out/clean_data.parquet`. 
-- How `make` runs your command:  
-	- When you tell `make` to create a target, `make` first checks the dependencies for that rule. If a dependency is itself a target from another rule, `make`moves back to this previous rule. This continuous until `make` finds the antecedent dependencies. 
-	- `make` then checks the timestamps of antecedent dependencies. If the dependencies have not changed since the target was last created, `make` won't re-run the commands for that target. If the target does not exist, the command is always run. 
-	- `make` will the move through the linked set of dependencies, running the commands from rules where dependencies have changed since the target was last created. 
-	- `make` will let you know before it tries to run if a dependency does not exist and there exists no rule to create it. 
-- Installation: 
-	- `make` is usually pre-installed on Unix-based systems (like macOS and Linux). For Windows, you can install it through tools like Cygwin, GNUWin32, or `rtools`. 
-- Important syntax notes: 
-	- _Indentation_: Make sure to use a tab, not spaces, for indentation in the Makefile.
-	- _Multiple Languages_: If your workflow involves Stata or SAS scripts, you can include them in the Makefile just like R scripts. For instance, `stata -b do my_analysis.do` for a Stata script.
-- Line splitting with many dependencies 
-	- If you file contains many dependencies it can be useful to split the dependency list over multiple lines. You can do this by writing ` \` and continuing the content on the next line after an indentation. If you include anything, include a space, after the backslash, `make` will throw an error. 
+To build: open a terminal in the folder holding the makefile and type `make builddata/out/clean_data.parquet` (or just `make all` if you have set up an `all` target — see below).
 
-```
-builddata/out/clean_data.parquet: \
-	builddata/code/clean_data.R \
-	buildraw/out/rawdata.csv
-	rscript builddata/code/clean_data.R
-```
+**Two syntax gotchas:**
 
-- Many targets
-	- A file may create multiple outputs, such as regression tables. To specify this, you simple add all targets to the left of `:`
+- **Indentation must be a tab, not spaces.** Most editors will let you configure this per-file.
+- **Line continuation** uses a trailing `\`. Any character (even a space) after the `\` will break the build.
 
-```
-builddata/out/clean_data1.parquet builddata/out/clean_data2.parquet : \
-	builddata/code/clean_data.R \
-	buildraw/out/rawdata.csv
-	rscript builddata/code/clean_data.R
-```
+### Our conventions 
 
-- Automatic variables 
-	- `make` allows you to use [automatic variables](https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html) in rules.
-		- `$@`: The name of the target 
-		- `$<`: The name of the first prerequisite
-		- `$^`: The names of all the prerequisites, with spaces between them
+We use a small set of `make` features consistently. Each project makefile follows this pattern:
 
-```
-builddata/out/clean_data.parquet: \
-	builddata/code/clean_data.R \
-	buildraw/out/rawdata.csv
-	rscript $<
-```
-
-- Creating variables 
-	- Creating variables can be useful, for example, for creating build rules or listing all targets you want to build. 
-	- Variables can be assigned with `:=`. E.g., `var := name1`
-	- Variables can be called using `$(variablename)`
-	- You can append to a variable by adding `$(variablename)` on the right hand side of the assignment name; `var := $(var) name2`. 
+- Set an `R` variable pointing to the Rscript executable so the command line stays short. (Adapt with other code executables if you need them, e.g. for stata code)
+- Use `$<` (the first dependency) in commands, so the target and the code file stay in sync.
+- Split long dependency lists across lines with `\`.
+- Accumulate output files in a `TARGETS` variable and define a phony `all: $(TARGETS)` at the bottom so `make all` rebuilds everything.
 
 ```
 R := C:\Users\bxn825\scoop\shims\rscript.exe
 
-builddata/out/clean_data.parquet: \
-	builddata/code/clean_data.R \
-	buildraw/out/rawdata.csv
-	$(R) $<
-```
+TARGETS := 
 
-- Creating build rules with many targets (phony targets)  
-	- The rule `all: $(targets)` is often used to run all rules you want in a project, when the variable `$(targets)` contains a set of targets in your project. 
-	- You can use `.PHONY` to explicitly declare `all` (and other non-file targets) as a phony target. This tells `make` that this target isn't a file but rather a label for a recipe to be executed. 
-
-```
-R := C:\Users\bxn825\scoop\shims\rscript.exe
-
-$(targets) := builddata/out/clean_data.parquet
-builddata/out/clean_data.parquet: \
-	builddata/code/clean_data.R \
+TARGETS := $(TARGETS) builddata/out/clean_data1.parquet
+builddata/out/clean_data1.parquet: \
+	builddata/src/clean_data1.R \
 	buildraw/out/rawdata.csv
 	$(R) $<
 
-$(targets) := $(targets) builddata/out/clean_data.parquet 
-builddata/out/clean_data.parquet: \
-	builddata/code/clean_data.R \
+TARGETS := $(TARGETS) builddata/out/clean_data2.parquet
+builddata/out/clean_data2.parquet: \
+	builddata/src/clean_data2.R \
 	buildraw/out/rawdata.csv
 	$(R) $<
 
 .PHONY: all 
 
-all: $(targets)
+all: $(TARGETS)
 ```
+
+For Stata/SAS scripts, swap the command (e.g., `stata -b do $<`). For other automatic variables (`$@` for the target, `$^` for all dependencies), see the [GNU make manual](https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html).
 
 
 ### Subfolders 
@@ -419,22 +488,22 @@ When projects contain subfolders for distinct tasks, each subfolder should have 
 ```
 rawextract/ 
 	dst/
-		dat1.sas7bdat
+		demo_fixed.sas7bdat
 		dat2.sas7bdat
 consistency_simulation/
-	code/ 
+	src/ 
 		simulate_estimator_consistency.R 
 	log/
     temp/
 	out/
-		simulate_estimator_consistency_distribution.PDF
+		simulate_estimator_consistency_distribution.pdf
     makefile
 builddata/
-    code/ 
-        clean_dat1.R 
+    src/ 
+        clean_demo_fixed.R 
     log/ 
     out/
-        clean_dat1.parquet
+        clean_demo_fixed.parquet
     makefile
 makefile
 makefile.env
@@ -457,11 +526,11 @@ all: builddata consistency_simulation
 
 builddata: 
     @echo entering builddata folder...
-    $MAKE$ -C builddata 
+    $(MAKE) -C builddata 
 
 consistency_simulation: 
     @echo entering consistency_simulation folder...
-    $MAKE$ -C consistency_simulation 
+    $(MAKE) -C consistency_simulation 
 ```
 
 - Content of the makefile in `builddata` 
@@ -472,10 +541,10 @@ include ../makefile.env
 # targets 
 TARGETS = 
 
-TARGETS := $(TARGETS) out/clean_dat1.parquet
-out/clean_dat1.parquet: \
-    code/clean_dat1.R \
-    ../rawextract/out/dat1.sas7bdat
+TARGETS := $(TARGETS) out/clean_demo_fixed.parquet
+out/clean_demo_fixed.parquet: \
+    src/clean_demo_fixed.R \
+    ../rawextract/out/demo_fixed.sas7bdat
     $(R)
 
 # run all targets 
@@ -487,7 +556,6 @@ all: $(TARGETS)
 
 
 # Software 
-
 
 ## Required 
 
@@ -526,13 +594,13 @@ List of required software
 		- [Markdown and Visual Studio Code](https://code.visualstudio.com/docs/languages/markdown) 
 	- We use `pandoc` or `quarto` to convert markdown files into Word, PDF (via LaTeX), beamer slides, or HTML files.
 - R, RStudio, rtools
-	- [R](https://www.r-project.org/) is an open-source statistical programming language that has gotten a lot of traction in the Econometrics community. Most new developments in Econometrics are likely to arrive to R at the same time or prior to, e.g., Stata. 
-	- [Rstudio](https://posit.co/products/open-source/rstudio/) is an editor specialized for R coding. We typically use RStudio whenever we edit R code.  
+	- [R](https://www.r-project.org/) is an open-source statistical programming language that has gotten a lot of traction in the Econometrics community. The software that runs R code is also called `R` and most be installed on your computer (or server) to run R code. Most new developments in Econometrics are likely to arrive to R before Stata and has better tools for outputting tables/figures. 
+	- [Rstudio](https://posit.co/products/open-source/rstudio/) is an editor specialized for R coding. We typically use RStudio whenever we edit R code on the server.  
 	- [rtools](https://cran.r-project.org/bin/windows/Rtools/) is a set of software tools R will need to compile some packages, including the `arrow` package we use for parquet format IO. 
 	- Installation options: 
-		- [Installation guide for R and RStudio] by Posit (the developers behind RStudio).
+		- [Installation guide for R and RStudio](https://posit.co/download/rstudio-desktop/) by Posit (the developers behind RStudio).
 		- [Installation guide for rtools](https://cran.r-project.org/bin/windows/Rtools/) via CRAN. 
-		- Installation via Scoop on Windows machines: `Scoop bucket add r-bucket https://github.com/cderv/r-bucket.git; scoop install r; scoop install rstudio; scoop install rtools`
+		- Installation via Scoop on Windows machines: `scoop bucket add r-bucket https://github.com/cderv/r-bucket.git; scoop install r; scoop install rstudio; scoop install rtools`
     - Guides to get started using R
         - [4h R crash course](https://github.com/hhsievertsen/Advanced_R/) by Hans H. Sievertsen. With Economics related examples 
         - [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund.
@@ -544,7 +612,8 @@ List of required software
 - Pandoc 
 	- [Pandoc](https://pandoc.org/index.html) is an open-source command line tool that can be used to convert between many different text formats. We will typically use it to convert between markdown and PDF/word documents. 
 	- Installation options: 
-		-  [Guide](https://www.google.com/search?client=firefox-b-d&q=pandoc+) from the developers. Installation via Scoopon Windows machines: `scoop install pandoc`
+		-  [Installation guide](https://pandoc.org/installing.html) from the developers. 
+		- Installation via Scoop on Windows machines: `scoop install pandoc`
 - Quarto 
 	- [Quarto](https://quarto.org/) is a piece of software developed by Posit that allows you to write quarto documents containing both markdown text and integrated R, Python, or some other relevant code. The documents can be edited in RStudio or VSCode. Quarto documents are beneficial when some code requires extensive documentation.    
 	- Installation options: 
@@ -563,26 +632,16 @@ List of required software
 			- Install using the guide at the link. 
 			- Set bbt's citation key formula to `authEtAl + year + shorttitle(3,3)` by going to `preferences --> Better BibTex --> Open Better BibTex Preferences --> Citation Key`, and copy the formula in. 
 
-
 ## Suggestions 
 
-- Scoop
-	- A Powershell tool for Windows that helps you install and update software updated. 
+- Scoop (windows)
+	- A tool for Windows that helps you install and update software. 
 	- Installation options: 
     	- [Guide](https://scoop.sh/) from the developers.
 	- Working on university-provided IT equipment can give update and installation problems if you do not have administrator rights over the computer. This can be circumvented by ensuring that all (or most) programs are installed in your own user path. Scoop does this. 
 	- We presently use the Powershell tool `scoop` to manage the installation of most software on my system. `scoop` uses recipes created by others to install (often) the latest versions of programs. 
 	- Installing a program with `scoop` is as simple as `scoop install program`. 
-	- Updating a program with `scoop` is as simple as `Scoop update program`. Type `scoop update *` to update all installed programs.
+	- Updating a program with `scoop` is as simple as `scoop update program`. Type `scoop update *` to update all installed programs.
 	- Scoop searches for install recipes in buckets. Buckets can be added by typing `scoop bucket add ...` in Powershell. Examples of useful buckets include `extras`, `nerd-fonts`, and `r-bucket`. You can find an example of installing and using a `scoop` to set up a new Windows machine at `https://github.com/EriksenJ/_setup`. 
-- Obsidian 
-	- A markdown-based digital note editor with latex compilation to PDF ready out of the box.  
-	- Some suggested plugins 
-		- LaTeX Suite 
-		- Linter 
-		- Obsidian Git 
-		- Templater 
-		- Zotero Integration
-	- Install with `scoop` on windows: `scoop bucket add extras; scoop install obsidian`
 - Linh T. Tô has a great set of (free) resources on her [website](https://linh.to/resources/). 
 
